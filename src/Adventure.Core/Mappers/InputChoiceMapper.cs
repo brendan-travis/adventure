@@ -21,15 +21,15 @@ namespace Adventure.Core.Mappers
 
                 while(command == null)
                 {
-                    if (j > x.Length)
-                    {
-                        throw new NonUniqueCommandException();
-                    }
-                    
                     if (i+j > x.Length)
                     {
                         i = 0;
                         j++;
+                    }
+                    
+                    if (j > x.Length)
+                    {
+                        throw new NonUniqueCommandException();
                     }
 
                     var attemptedCommand = x.Substring(i,j);

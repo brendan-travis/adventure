@@ -8,7 +8,7 @@ namespace Adventure.Core.Extensions
     public static class StringExtensions
     {
         /// <summary>
-        /// Validates the <see cref="string"/> value to make sure it is not null or empty.
+        /// Asserts the <see cref="string"/> value is not null or empty.
         /// Throws exceptions if the <see cref="string"/> value is invalid.
         /// </summary>
         /// <param name="value">The <see cref="string"/> to validate.</param>

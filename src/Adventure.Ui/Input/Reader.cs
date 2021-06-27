@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Adventure.Core.Extensions;
 using Adventure.Core.Mappers.Interfaces;
 using Adventure.Ui.Abstractions.Interfaces;
 using Adventure.Ui.Input.Interfaces;
@@ -21,12 +22,15 @@ namespace Adventure.Ui.Input
 
         public string ShowChoices(IList<string> choices)
         {
+            choices.NotNullOrEmpty(nameof(choices));
+
             var availableChoices = this.InputChoiceMapper.MapToInputChoices(choices).ToList();
 
             var choice = string.Empty;
             var firstTimeRun = true;
 
-            while(!availableChoices.Any(x => string.Equals(choice, x.CommandKey, StringComparison.InvariantCultureIgnoreCase)))
+            while (!availableChoices.Any(x =>
+                string.Equals(choice, x.CommandKey, StringComparison.InvariantCultureIgnoreCase)))
             {
                 if (!firstTimeRun)
                 {
@@ -39,7 +43,7 @@ namespace Adventure.Ui.Input
                 firstTimeRun = false;
 
                 this.Console.WriteLine("");
-                foreach(var command in availableChoices)
+                foreach (var command in availableChoices)
                 {
                     this.Console.WriteLine(command.FormattedChoice);
                 }
@@ -49,7 +53,8 @@ namespace Adventure.Ui.Input
                 choice = this.Console.ReadLine().ToLower();
             }
 
-            return availableChoices.First(x => string.Equals(choice, x.CommandKey, StringComparison.InvariantCultureIgnoreCase)).Choice;
+            return availableChoices
+                .First(x => string.Equals(choice, x.CommandKey, StringComparison.InvariantCultureIgnoreCase)).Choice;
         }
     }
 }
