@@ -1,13 +1,12 @@
-﻿using Adventure.Core.Ui;
+﻿using Adventure.Core.GameplayEngine;
+using Adventure.Engine.Gameplay.Crimson.DependencyExtensions;
 using Adventure.Ui.Azure.DependencyExtensions;
 using Microsoft.Extensions.DependencyInjection;
 
 var serviceProvider = new ServiceCollection()
     .AddUiDependencies()
+    .AddGameplayEngineDependencies()
     .BuildServiceProvider();
 
-var writer = serviceProvider.GetService<IMessageWriter>();
-writer?.WriteMessage("DI works!");
-
-
-Thread.Sleep(10_000);
+var gameplayEngine = serviceProvider.GetService<IGameplayManager>();
+gameplayEngine?.StartGame();
