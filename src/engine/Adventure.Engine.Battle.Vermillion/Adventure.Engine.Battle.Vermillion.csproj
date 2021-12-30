@@ -7,4 +7,8 @@
         <RootNamespace>Adventure.Engine.Battle.Vermillion</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Adventure.Core\Adventure.Core.csproj" />
+    </ItemGroup>
+
 </Project>

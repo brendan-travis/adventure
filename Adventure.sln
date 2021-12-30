@@ -4,8 +4,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ui", "ui", "{F2E529F0-1B00-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "engine", "engine", "{45C85A76-D7F7-4CB1-A350-DBFF19543D96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Bootstrapper", "src\Adventure.Bootstrapper\Adventure.Bootstrapper.csproj", "{2B95D471-85F4-4870-B4E4-02A64A097478}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Core", "src\Adventure.Core\Adventure.Core.csproj", "{1C9B3B29-CFFB-4944-941B-04A47BCE9357}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__tests", "__tests", "{41B37032-6073-4198-9B37-8E3E47317DB1}"
@@ -20,13 +18,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Battle.Ver
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Gameplay.Crimson", "src\engine\Adventure.Engine.Gameplay.Crimson\Adventure.Engine.Gameplay.Crimson.csproj", "{DFAE3E79-6B72-4872-ADE8-C299E490E3BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Ui.Azure", "src\ui\Adventure.Ui.Azure\Adventure.Ui.Azure.csproj", "{6E691307-6EFF-4799-A60E-EEC15056AB90}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Battle.Vermillion.Tests", "src\engine\__tests\Adventure.Engine.Battle.Vermillion.Tests\Adventure.Engine.Battle.Vermillion.Tests.csproj", "{DE7F5899-4086-4A36-A5DE-DD05D275DC3C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Gameplay.Crimson.Tests", "src\engine\__tests\Adventure.Engine.Gameplay.Crimson.Tests\Adventure.Engine.Gameplay.Crimson.Tests.csproj", "{FA3570DA-9186-4149-971C-80F518C6FF65}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Ui.Azure.Tests", "src\ui\__tests\Adventure.Ui.Azure.Tests\Adventure.Ui.Azure.Tests.csproj", "{27182C89-977B-4908-BDE1-2E63ACBEAC3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Ui.Azure", "src\ui\Adventure.Ui.Azure\Adventure.Ui.Azure.csproj", "{EE2923B8-4379-458F-9811-A090E159860A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__debug", "__debug", "{CE2FF8F0-4AAE-4929-BA85-DD9B852C3E5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Battle.Vermillion.Harness", "src\engine\__debug\Adventure.Engine.Battle.Vermillion.Harness\Adventure.Engine.Battle.Vermillion.Harness.csproj", "{F58393FA-CB2F-4297-A361-D7BB0EE0726F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Gameplay.Crimson.Harness", "src\engine\__debug\Adventure.Engine.Gameplay.Crimson.Harness\Adventure.Engine.Gameplay.Crimson.Harness.csproj", "{659E7D44-C823-4BA6-8507-72162CD1BE4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,10 +38,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2B95D471-85F4-4870-B4E4-02A64A097478}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B95D471-85F4-4870-B4E4-02A64A097478}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B95D471-85F4-4870-B4E4-02A64A097478}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B95D471-85F4-4870-B4E4-02A64A097478}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1C9B3B29-CFFB-4944-941B-04A47BCE9357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1C9B3B29-CFFB-4944-941B-04A47BCE9357}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C9B3B29-CFFB-4944-941B-04A47BCE9357}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -54,10 +54,6 @@ Global
 		{DFAE3E79-6B72-4872-ADE8-C299E490E3BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFAE3E79-6B72-4872-ADE8-C299E490E3BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFAE3E79-6B72-4872-ADE8-C299E490E3BB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6E691307-6EFF-4799-A60E-EEC15056AB90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E691307-6EFF-4799-A60E-EEC15056AB90}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E691307-6EFF-4799-A60E-EEC15056AB90}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E691307-6EFF-4799-A60E-EEC15056AB90}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DE7F5899-4086-4A36-A5DE-DD05D275DC3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DE7F5899-4086-4A36-A5DE-DD05D275DC3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE7F5899-4086-4A36-A5DE-DD05D275DC3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -70,6 +66,18 @@ Global
 		{27182C89-977B-4908-BDE1-2E63ACBEAC3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27182C89-977B-4908-BDE1-2E63ACBEAC3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27182C89-977B-4908-BDE1-2E63ACBEAC3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE2923B8-4379-458F-9811-A090E159860A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE2923B8-4379-458F-9811-A090E159860A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE2923B8-4379-458F-9811-A090E159860A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE2923B8-4379-458F-9811-A090E159860A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F58393FA-CB2F-4297-A361-D7BB0EE0726F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F58393FA-CB2F-4297-A361-D7BB0EE0726F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F58393FA-CB2F-4297-A361-D7BB0EE0726F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F58393FA-CB2F-4297-A361-D7BB0EE0726F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{659E7D44-C823-4BA6-8507-72162CD1BE4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{659E7D44-C823-4BA6-8507-72162CD1BE4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{659E7D44-C823-4BA6-8507-72162CD1BE4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{659E7D44-C823-4BA6-8507-72162CD1BE4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{38C83C88-5CB9-4AC3-B4B4-CE5BDA44C8CF} = {41B37032-6073-4198-9B37-8E3E47317DB1}
@@ -77,9 +85,12 @@ Global
 		{A6EF7DE7-1126-4FA0-A266-274A8E0B9B54} = {F2E529F0-1B00-46AF-A844-67775365AE89}
 		{A82AA799-DBC6-4856-B26F-B04F8D94DADC} = {45C85A76-D7F7-4CB1-A350-DBFF19543D96}
 		{DFAE3E79-6B72-4872-ADE8-C299E490E3BB} = {45C85A76-D7F7-4CB1-A350-DBFF19543D96}
-		{6E691307-6EFF-4799-A60E-EEC15056AB90} = {F2E529F0-1B00-46AF-A844-67775365AE89}
 		{DE7F5899-4086-4A36-A5DE-DD05D275DC3C} = {1E8724DE-3F1A-4DB9-B15C-7E956943A2FF}
 		{FA3570DA-9186-4149-971C-80F518C6FF65} = {1E8724DE-3F1A-4DB9-B15C-7E956943A2FF}
 		{27182C89-977B-4908-BDE1-2E63ACBEAC3E} = {A6EF7DE7-1126-4FA0-A266-274A8E0B9B54}
+		{EE2923B8-4379-458F-9811-A090E159860A} = {F2E529F0-1B00-46AF-A844-67775365AE89}
+		{CE2FF8F0-4AAE-4929-BA85-DD9B852C3E5B} = {45C85A76-D7F7-4CB1-A350-DBFF19543D96}
+		{F58393FA-CB2F-4297-A361-D7BB0EE0726F} = {CE2FF8F0-4AAE-4929-BA85-DD9B852C3E5B}
+		{659E7D44-C823-4BA6-8507-72162CD1BE4A} = {CE2FF8F0-4AAE-4929-BA85-DD9B852C3E5B}
 	EndGlobalSection
 EndGlobal
