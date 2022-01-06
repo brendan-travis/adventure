@@ -1,176 +1,53 @@
 ﻿using Adventure.Core.Ui;
 using Adventure.Core.Ui.Constants;
-using Adventure.Ui.Azure.Ui.Interfaces;
 
 namespace Adventure.Ui.Azure.TitleScreen;
 
 public class TitleScreen : ITitleScreen
 {
-    public TitleScreen(IUiManager uiManager)
+    private const string Title = @"
+  ___      _                 _                    _ 
+ / _ \    | |               | |                  | |
+/ /_\ \ __| |_   _____ _ __ | |_ _   _ _ __ ___  | |
+|  _  |/ _` \ \ / / _ \ '_ \| __| | | | '__/ _ \ | |
+| | | | (_| |\ V /  __/ | | | |_| |_| | | |  __/ |_|
+\_| |_/\__,_| \_/ \___|_| |_|\__|\__,_|_|  \___| (_)";
+
+    public TitleScreen(IMessageWriter messageWriter, IMessageReader messageReader)
     {
-        this.UiManager = uiManager;
+        MessageWriter = messageWriter;
+        MessageReader = messageReader;
     }
 
-    private IUiManager UiManager { get; }
-
-    private string? SelectedOption { get; set; } = TitleScreenOptions.NewGame;
-
-    #region Screens
-
-    private string Title { get; } =
-        @"                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                    _       _                 _                    _                                   
-                                   / \   __| |_   _____ _ __ | |_ _   _ _ __ ___  | |                                  
-                                  / _ \ / _` \ \ / / _ \ '_ \| __| | | | '__/ _ \ | |                                  
-                                 / ___ \ (_| |\ V /  __/ | | | |_| |_| | | |  __/ |_|                                  
-                                /_/   \_\__,_| \_/ \___|_| |_|\__|\__,_|_|  \___| (_)                                  
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       ";
-
-    private string Menu { get; } =
-        @"                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                    ╓────────────────╖                                                 
-                                                    ║    New Game    ║                                                 
-                                                    ║    Load Game   ║                                                 
-                                                    ║    Exit        ║                                                 
-                                                    ╙────────────────╜                                                 
-                                                                                                                       
-                                                                                                                       ";
-
-    private string MenuWithDebugOption { get; } =
-        @"                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                                                                                       
-                                                    ╓────────────────╖                                                 
-                                                    ║    New Game    ║                                                 
-                                                    ║    Load Game   ║                                                 
-                                                    ║    Debug       ║                                                 
-                                                    ║    Exit        ║                                                 
-                                                    ╙────────────────╜                                                 
-                                                                                                                       
-                                                                                                                       ";
-
-    #endregion
+    private IMessageWriter MessageWriter { get; }
+    
+    private IMessageReader MessageReader { get; }
 
     public void DrawTitleScreen()
     {
-        this.UiManager.UpdateUi(this.Title, 0);
+        this.MessageWriter.WriteMessage(Title);
+        this.MessageWriter.WriteBlankLine();
     }
 
-    public string? ShowTitleScreenOptions()
+    public string ShowTitleScreenOptions()
     {
-        while (true)
+#if DEBUG
+        var options = new []
         {
-#if DEBUG
-            this.UiManager.UpdateUi(
-                this.MenuWithDebugOption.Replace($"  {this.SelectedOption}", $"> {this.SelectedOption}"), 1);
+            TitleScreenOptions.NewGame,
+            TitleScreenOptions.LoadGame,
+            TitleScreenOptions.Debug,
+            TitleScreenOptions.Exit
+        };
 #else
-        this.UiManager.UpdateUi(
-            this.Menu.Replace($"  {this.SelectedOption}", $"> {this.SelectedOption}"), 1);
+        var options = new []
+        {
+            TitleScreenOptions.NewGame,
+            TitleScreenOptions.LoadGame,
+            TitleScreenOptions.Exit
+        };
 #endif
 
-            var userInput = Console.ReadKey();
-
-            switch (userInput.Key)
-            {
-                case ConsoleKey.Enter:
-                    return this.SelectedOption;
-                case ConsoleKey.UpArrow:
-                    switch (this.SelectedOption)
-                    {
-                        case TitleScreenOptions.LoadGame:
-                            this.SelectedOption = TitleScreenOptions.NewGame;
-                            break;
-                        case TitleScreenOptions.Debug:
-                            this.SelectedOption = TitleScreenOptions.LoadGame;
-                            break;
-                        case TitleScreenOptions.Exit:
-#if DEBUG
-                            this.SelectedOption = TitleScreenOptions.Debug;
-#else
-                            this.SelectedOption = TitleScreenOptions.LoadGame;
-#endif
-                            break;
-                    }
-
-                    break;
-                case ConsoleKey.DownArrow:
-                    switch (this.SelectedOption)
-                    {
-                        case TitleScreenOptions.NewGame:
-                            this.SelectedOption = TitleScreenOptions.LoadGame;
-                            break;
-                        case TitleScreenOptions.LoadGame:
-#if DEBUG
-                            this.SelectedOption = TitleScreenOptions.Debug;
-#else
-                            this.SelectedOption = TitleScreenOptions.Exit;
-#endif
-                            break;
-                        case TitleScreenOptions.Debug:
-                            this.SelectedOption = TitleScreenOptions.Exit;
-                            break;
-                    }
-
-                    break;
-            }
-        }
+        return this.MessageReader.ReadMessage("Enter an options", options);
     }
 }

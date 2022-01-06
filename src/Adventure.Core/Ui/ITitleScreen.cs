@@ -6,5 +6,5 @@ public interface ITitleScreen
 {
     public void DrawTitleScreen();
 
-    public string? ShowTitleScreenOptions();
+    public string ShowTitleScreenOptions();
 }

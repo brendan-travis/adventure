@@ -6,12 +6,15 @@ namespace Adventure.Engine.Gameplay.Crimson.Core;
 
 public class GameplayManager : IGameplayManager
 {
-    public GameplayManager(ITitleScreen titleScreen)
+    public GameplayManager(ITitleScreen titleScreen, IMessageWriter messageWriter)
     {
         this.TitleScreen = titleScreen;
+        MessageWriter = messageWriter;
     }
 
     private ITitleScreen TitleScreen { get; }
+    
+    private IMessageWriter MessageWriter { get; }
     
     public void StartGame()
     {
@@ -22,9 +25,14 @@ public class GameplayManager : IGameplayManager
         {
             chosenOption = this.TitleScreen.ShowTitleScreenOptions();
 
-            if (chosenOption != TitleScreenOptions.Exit)
+            switch (chosenOption)
             {
-                chosenOption = null;
+                case TitleScreenOptions.Exit:
+                    this.MessageWriter.WriteMessage("Shutting down, thanks for playing!");
+                    break;
+                default:
+                    chosenOption = null;
+                    break;
             }
         }
     }
