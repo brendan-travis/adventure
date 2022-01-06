@@ -1,7 +1,7 @@
 ﻿using Adventure.Core.Ui;
 using Adventure.Core.Ui.Constants;
 
-namespace Adventure.Ui.Azure.TitleScreen;
+namespace Adventure.Ui.TitleScreen;
 
 public class TitleScreen : ITitleScreen
 {

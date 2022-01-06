@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace Adventure.Engine.Battle.Vermillion.Tests;
+namespace Adventure.Engine.Battle.Tests;
 
 public class UnitTest1
 {

@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Adventure.Ui.Azure\Adventure.Ui.Azure.csproj" />
+      <ProjectReference Include="..\..\Adventure.Engine.Battle\Adventure.Engine.Battle.csproj" />
     </ItemGroup>
 
 </Project>

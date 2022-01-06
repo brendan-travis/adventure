@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Adventure.Core.Ui;
 
-namespace Adventure.Ui.Azure.IO;
+namespace Adventure.Ui.IO;
 
 public class MessageReader : IMessageReader
 {

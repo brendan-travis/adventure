@@ -2,7 +2,7 @@
 using Adventure.Core.Ui;
 using Adventure.Core.Ui.Constants;
 
-namespace Adventure.Engine.Gameplay.Crimson.Core;
+namespace Adventure.Engine.Gameplay.Core;
 
 public class GameplayManager : IGameplayManager
 {

@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace Adventure.Engine.Gameplay.Crimson.Tests;
+namespace Adventure.Ui.Tests;
 
 public class UnitTest1
 {

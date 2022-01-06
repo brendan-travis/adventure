@@ -14,23 +14,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__tests", "__tests", "{1E87
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__tests", "__tests", "{A6EF7DE7-1126-4FA0-A266-274A8E0B9B54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Battle.Vermillion", "src\engine\Adventure.Engine.Battle.Vermillion\Adventure.Engine.Battle.Vermillion.csproj", "{A82AA799-DBC6-4856-B26F-B04F8D94DADC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Battle", "src\engine\Adventure.Engine.Battle\Adventure.Engine.Battle.csproj", "{A82AA799-DBC6-4856-B26F-B04F8D94DADC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Gameplay.Crimson", "src\engine\Adventure.Engine.Gameplay.Crimson\Adventure.Engine.Gameplay.Crimson.csproj", "{DFAE3E79-6B72-4872-ADE8-C299E490E3BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Gameplay", "src\engine\Adventure.Engine.Gameplay\Adventure.Engine.Gameplay.csproj", "{DFAE3E79-6B72-4872-ADE8-C299E490E3BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Battle.Vermillion.Tests", "src\engine\__tests\Adventure.Engine.Battle.Vermillion.Tests\Adventure.Engine.Battle.Vermillion.Tests.csproj", "{DE7F5899-4086-4A36-A5DE-DD05D275DC3C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Battle.Tests", "src\engine\__tests\Adventure.Engine.Battle.Tests\Adventure.Engine.Battle.Tests.csproj", "{DE7F5899-4086-4A36-A5DE-DD05D275DC3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Gameplay.Crimson.Tests", "src\engine\__tests\Adventure.Engine.Gameplay.Crimson.Tests\Adventure.Engine.Gameplay.Crimson.Tests.csproj", "{FA3570DA-9186-4149-971C-80F518C6FF65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Gameplay.Tests", "src\engine\__tests\Adventure.Engine.Gameplay.Tests\Adventure.Engine.Gameplay.Tests.csproj", "{FA3570DA-9186-4149-971C-80F518C6FF65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Ui.Azure.Tests", "src\ui\__tests\Adventure.Ui.Azure.Tests\Adventure.Ui.Azure.Tests.csproj", "{27182C89-977B-4908-BDE1-2E63ACBEAC3E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Ui.Tests", "src\ui\__tests\Adventure.Ui.Tests\Adventure.Ui.Tests.csproj", "{27182C89-977B-4908-BDE1-2E63ACBEAC3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Ui.Azure", "src\ui\Adventure.Ui.Azure\Adventure.Ui.Azure.csproj", "{EE2923B8-4379-458F-9811-A090E159860A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Ui", "src\ui\Adventure.Ui\Adventure.Ui.csproj", "{EE2923B8-4379-458F-9811-A090E159860A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__debug", "__debug", "{CE2FF8F0-4AAE-4929-BA85-DD9B852C3E5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Battle.Vermillion.Harness", "src\engine\__debug\Adventure.Engine.Battle.Vermillion.Harness\Adventure.Engine.Battle.Vermillion.Harness.csproj", "{F58393FA-CB2F-4297-A361-D7BB0EE0726F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Battle.Harness", "src\engine\__debug\Adventure.Engine.Battle.Harness\Adventure.Engine.Battle.Harness.csproj", "{F58393FA-CB2F-4297-A361-D7BB0EE0726F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Gameplay.Crimson.Harness", "src\engine\__debug\Adventure.Engine.Gameplay.Crimson.Harness\Adventure.Engine.Gameplay.Crimson.Harness.csproj", "{659E7D44-C823-4BA6-8507-72162CD1BE4A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure.Engine.Gameplay.Harness", "src\engine\__debug\Adventure.Engine.Gameplay.Harness\Adventure.Engine.Gameplay.Harness.csproj", "{659E7D44-C823-4BA6-8507-72162CD1BE4A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{2E555E61-4533-4FA7-9FC2-3FD2AB912BB6}"
 EndProject

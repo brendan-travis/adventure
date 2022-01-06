@@ -1,6 +1,6 @@
 ﻿using Adventure.Core.Ui;
 
-namespace Adventure.Ui.Azure.IO;
+namespace Adventure.Ui.IO;
 
 public class MessageWriter : IMessageWriter
 {

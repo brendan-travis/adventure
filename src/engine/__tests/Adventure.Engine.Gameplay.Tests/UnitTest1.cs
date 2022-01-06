@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace Adventure.Ui.Azure.Tests;
+namespace Adventure.Engine.Gameplay.Tests;
 
 public class UnitTest1
 {

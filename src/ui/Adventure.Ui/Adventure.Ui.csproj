@@ -9,8 +9,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Adventure.Core\Adventure.Core.csproj" />
-      <ProjectReference Include="..\..\engine\Adventure.Engine.Battle.Vermillion\Adventure.Engine.Battle.Vermillion.csproj" />
-      <ProjectReference Include="..\..\engine\Adventure.Engine.Gameplay.Crimson\Adventure.Engine.Gameplay.Crimson.csproj" />
+      <ProjectReference Include="..\..\engine\Adventure.Engine.Battle\Adventure.Engine.Battle.csproj" />
+      <ProjectReference Include="..\..\engine\Adventure.Engine.Gameplay\Adventure.Engine.Gameplay.csproj" />
     </ItemGroup>
 
     <ItemGroup>

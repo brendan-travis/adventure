@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Adventure.Engine.Battle.Vermillion\Adventure.Engine.Battle.Vermillion.csproj" />
+      <ProjectReference Include="..\..\Adventure.Engine.Gameplay\Adventure.Engine.Gameplay.csproj" />
     </ItemGroup>
 
 </Project>

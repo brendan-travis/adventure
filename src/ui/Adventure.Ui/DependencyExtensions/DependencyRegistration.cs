@@ -1,8 +1,8 @@
 ﻿using Adventure.Core.Ui;
-using Adventure.Ui.Azure.IO;
+using Adventure.Ui.IO;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Adventure.Ui.Azure.DependencyExtensions;
+namespace Adventure.Ui.DependencyExtensions;
 
 public static class DependencyRegistration
 {
