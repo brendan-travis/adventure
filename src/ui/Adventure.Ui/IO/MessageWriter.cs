@@ -16,4 +16,14 @@ public class MessageWriter : IMessageWriter
     {
         Console.WriteLine();
     }
+
+    public void NewSection()
+    {
+        Thread.Sleep(MessageDelay);
+        Console.WriteLine(@"
+
+-------------------------------------------------------------------
+
+");
+    }
 }
