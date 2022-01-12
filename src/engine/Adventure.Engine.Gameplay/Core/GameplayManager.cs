@@ -6,15 +6,18 @@ namespace Adventure.Engine.Gameplay.Core;
 
 public class GameplayManager : IGameplayManager
 {
-    public GameplayManager(ITitleScreen titleScreen, IMessageWriter messageWriter)
+    public GameplayManager(ITitleScreen titleScreen, IMessageWriter messageWriter, ICoreLoop coreLoop)
     {
         this.TitleScreen = titleScreen;
         MessageWriter = messageWriter;
+        CoreLoop = coreLoop;
     }
 
     private ITitleScreen TitleScreen { get; }
 
     private IMessageWriter MessageWriter { get; }
+    
+    private ICoreLoop CoreLoop { get; }
 
     public void StartGame()
     {
@@ -30,6 +33,7 @@ public class GameplayManager : IGameplayManager
                 case TitleScreenOptions.NewGame:
                     this.MessageWriter.WriteMessage("And so, your adventure begins...");
                     this.MessageWriter.NewSection();
+                    this.CoreLoop.StartLoop();
                     break;
                 case TitleScreenOptions.LoadGame:
                     this.MessageWriter.WriteMessage("Loading is not yet implemented, try again later.");
