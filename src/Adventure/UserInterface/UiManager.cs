@@ -27,6 +27,11 @@ public static class UiManager
         WriteMessage("");
     }
 
+    public static void WriteMessage()
+    {
+        Console.WriteLine();
+    }
+    
     public static void WriteMessage(string message)
     {
         var pieces = Regex.Split(message, @"(\[\[[^\]]*\]\])");
@@ -89,8 +94,6 @@ public static class UiManager
 
     public static void AwaitUserConfirmation()
     {
-        Console.WriteLine("");
-        Console.WriteLine("Press enter to continue");
         while (true)
         {
             var input = Console.ReadKey(true);
@@ -99,6 +102,12 @@ public static class UiManager
                 break;
             }
         }
+    }
+
+    public static void WriteDialog(string speaker, string message)
+    {
+        WriteMessage($"[[[{speaker}],Yellow]]");
+        WriteMessage($"    \"{message}\"");
     }
 
     private static void ClearPreviousLines(int linesToClear)

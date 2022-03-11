@@ -42,6 +42,6 @@ public class ArcViridian : ITown
         UiManager.DrawUi();
         UiManager.WriteMessage(
             "A great tiled square stretches out in front of you");
-        UiManager.WriteMessage("");
+        UiManager.WriteMessage();
     }
 }

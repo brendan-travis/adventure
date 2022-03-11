@@ -42,6 +42,6 @@ public class ShoppingDistrict : ITown
         UiManager.DrawUi();
         UiManager.WriteMessage(
             "Rows and rows of shops are spread out to create a bustling marketplace.");
-        UiManager.WriteMessage("");
+        UiManager.WriteMessage();
     }
 }

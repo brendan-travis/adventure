@@ -12,6 +12,8 @@ public class Gatestone : ILocale
         UiManager.LocaleBar.Name = "Arc Viridian - Gatestone";
         UiManager.DrawUi();
         
+        this.ShowGatestoneUnavailableEvent();
+        
         var choice = UiManager.ShowChoices(new List<string>
         {
             "Go to the main square"
@@ -22,5 +24,17 @@ public class Gatestone : ILocale
             "Go to the main square" => new ArcViridian(),
             _ => this
         };
+    }
+
+    private void ShowGatestoneUnavailableEvent()
+    {
+        UiManager.DrawUi();
+        UiManager.WriteMessage("A guard approaches.");
+        UiManager.AwaitUserConfirmation();
+        
+        UiManager.DrawUi();
+        UiManager.WriteDialog("Guard", "Halt! You [[cannot, Red]] proceed! " +
+                                       "Turn back now, the Gatestone is currently off limits to everyone.");
+        UiManager.WriteMessage();
     }
 }
