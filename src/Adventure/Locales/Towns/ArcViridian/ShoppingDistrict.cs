@@ -1,6 +1,6 @@
 ﻿using Adventure.Locales.Base;
+using Adventure.Managers;
 using Adventure.Models;
-using Adventure.UserInterface;
 
 namespace Adventure.Locales.Towns.ArcViridian;
 
@@ -10,7 +10,7 @@ public class ShoppingDistrict : ITown
     {
         UiManager.LocaleBar.Type = LocaleType.Town;
         UiManager.LocaleBar.Name = "Arc Viridian - Shopping District";
-        UiManager.DrawUi();
+        UiManager.RedrawUi();
 
         while (true)
         {
@@ -39,7 +39,7 @@ public class ShoppingDistrict : ITown
 
     public void Examine()
     {
-        UiManager.DrawUi();
+        UiManager.RedrawUi();
         UiManager.WriteMessage(
             "Rows and rows of shops are spread out to create a bustling marketplace.");
         UiManager.WriteMessage();

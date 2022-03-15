@@ -6,5 +6,6 @@ public enum LocaleType
     Town,
     Battle,
     Field,
-    Dungeon
+    Dungeon,
+    Special
 }

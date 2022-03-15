@@ -1,30 +1,47 @@
 ﻿using System.Text.RegularExpressions;
 using Adventure.Models;
 
-namespace Adventure.UserInterface;
+namespace Adventure.Managers;
 
 public static class UiManager
 {
-    public static StatusBar StatusBar { get; set; } = new();
     public static LocaleBar LocaleBar { get; set; } = new();
 
-    public static void DrawUi()
+    public static void RedrawUi()
     {
         Console.Clear();
         
-        WriteMessage($"[[{StatusBar.CharacterName},Blue]] " +
-                     $"Lvl.[[{StatusBar.Level},Magenta]] " +
-                     $"HP.[[{StatusBar.HealthPoints},Red]]/[[{StatusBar.HealthPointsTotal},Red]] " +
-                     $"Sta.[[{StatusBar.Stamina},Green]]/[[{StatusBar.StaminaTotal},Green]]");
-        
-        if (LocaleBar.Type != LocaleType.Unknown)
-        {
-            WriteMessage(LocaleBar.Type == LocaleType.Battle
-                ? $"{LocaleBar.Type}"
-                : $"{LocaleBar.Type}: [[{LocaleBar.Name},Blue]]");
-        }
+        WriteMessage($"[[{CharacterManager.CurrentCharacter.Name},Blue]] " +
+                     $"Lvl.[[{CharacterManager.CurrentCharacter.Level},Magenta]] " +
+                     $"HP.[[{CharacterManager.CurrentCharacter.Stats.CurrentHp},Red]]/" +
+                     $"[[{CharacterManager.CurrentCharacter.Stats.MaximumHp},Red]] " +
+                     $"Sta.[[{CharacterManager.CurrentCharacter.Stats.CurrentStamina},Green]]/" +
+                     $"[[{CharacterManager.CurrentCharacter.Stats.MaximumStamina},Green]]");
 
-        WriteMessage("");
+        switch (LocaleBar.Type)
+        {
+            case LocaleType.Battle:
+                WriteMessage($"{LocaleBar.Type}");
+                break;
+            case LocaleType.Special:
+                WriteMessage($"{LocaleBar.Name}");
+                break;
+            case LocaleType.Unknown:
+                break;
+            case LocaleType.Town:
+            case LocaleType.Field:
+            case LocaleType.Dungeon:
+            default:
+                WriteMessage($"{LocaleBar.Type}: [[{LocaleBar.Name},Blue]]");
+                break;
+        }
+        
+        WriteMessage();
+    }
+
+    public static void ClearUi()
+    {
+        Console.Clear();
     }
 
     public static void WriteMessage()
@@ -108,6 +125,7 @@ public static class UiManager
     {
         WriteMessage($"[[[{speaker}],Yellow]]");
         WriteMessage($"    \"{message}\"");
+        WriteMessage();
     }
 
     private static void ClearPreviousLines(int linesToClear)

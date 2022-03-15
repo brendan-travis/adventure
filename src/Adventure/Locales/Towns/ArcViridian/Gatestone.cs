@@ -1,6 +1,6 @@
 ﻿using Adventure.Locales.Base;
+using Adventure.Managers;
 using Adventure.Models;
-using Adventure.UserInterface;
 
 namespace Adventure.Locales.Towns.ArcViridian;
 
@@ -10,7 +10,7 @@ public class Gatestone : ILocale
     {
         UiManager.LocaleBar.Type = LocaleType.Town;
         UiManager.LocaleBar.Name = "Arc Viridian - Gatestone";
-        UiManager.DrawUi();
+        UiManager.RedrawUi();
         
         this.ShowGatestoneUnavailableEvent();
         
@@ -28,13 +28,12 @@ public class Gatestone : ILocale
 
     private void ShowGatestoneUnavailableEvent()
     {
-        UiManager.DrawUi();
+        UiManager.RedrawUi();
         UiManager.WriteMessage("A guard approaches.");
         UiManager.AwaitUserConfirmation();
         
-        UiManager.DrawUi();
+        UiManager.RedrawUi();
         UiManager.WriteDialog("Guard", "Halt! You [[cannot, Red]] proceed! " +
                                        "Turn back now, the Gatestone is currently off limits to everyone.");
-        UiManager.WriteMessage();
     }
 }

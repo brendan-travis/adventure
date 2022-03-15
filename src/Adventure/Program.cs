@@ -1,19 +1,36 @@
-﻿using Adventure.Locales.Base;
+﻿using Adventure.Debug;
+using Adventure.Locales.Base;
 using Adventure.Locales.Towns.ArcViridian;
-using Adventure.UserInterface;
+using Adventure.Managers;
+using Adventure.Models;
 
-UiManager.StatusBar.CharacterName = "Arven the Hero";
-UiManager.StatusBar.Level = "1";
-UiManager.StatusBar.HealthPoints = "48";
-UiManager.StatusBar.HealthPointsTotal = "50";
-UiManager.StatusBar.Stamina = "20";
-UiManager.StatusBar.StaminaTotal = "20";
-
-UiManager.DrawUi();
+CharacterManager.CurrentCharacter = new Entity
+{
+    Name = "Arven the Hero"
+};
 
 
-ILocale currentLocation = new ArcViridian();
 while (true)
 {
-    currentLocation = currentLocation.GoTo();
+    UiManager.ClearUi();
+    var choice = UiManager.ShowChoices(new List<string>
+    {
+        "New Game",
+        "Debug"
+    });
+
+    switch (choice)
+    {
+        case "Debug":
+            new DebugMenu().Launch();
+            break;
+        case "New Game":
+            ILocale currentLocation = new ArcViridian();
+            while (true)
+            {
+                currentLocation = currentLocation.GoTo();
+            }
+
+            break;
+    }
 }
