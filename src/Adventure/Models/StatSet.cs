@@ -2,12 +2,21 @@
 
 public class StatSet
 {
-    public int CurrentHp { get; set; } = 10;
+    public StatSet(SkillSet linkedSkills)
+    {
+        LinkedSkills = linkedSkills;
 
-    // TODO - make this computed from stat tables
-    public int MaximumHp { get; set; } = 10;
+        CurrentHp = MaximumHp;
+        CurrentStamina = MaximumStamina;
+    }
 
-    public int CurrentStamina { get; set; } = 10;
+    private SkillSet LinkedSkills { get; }
+
+    public int CurrentHp { get; set; }
+
+    public int MaximumHp => SkillTables.Hp[LinkedSkills.Constitution];
+
+    public int CurrentStamina { get; set; }
 
     // TODO - make this computed from stat tables
     public int MaximumStamina { get; set; } = 10;

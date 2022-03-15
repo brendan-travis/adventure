@@ -37,6 +37,19 @@ public static class UiManager
         }
         
         WriteMessage();
+
+        if (BattleManager.InBattle)
+        {
+            foreach (var entity in BattleManager.OpposingTeam)
+            {
+                WriteMessage($"* [[{entity.Name},Red]] " +
+                             $"Lvl.[[{entity.Level},Magenta]] " +
+                             $"HP.[[{entity.Stats.CurrentHp},Red]]/" +
+                             $"[[{entity.Stats.MaximumHp},Red]]");
+            }
+            
+            WriteMessage();
+        }
     }
 
     public static void ClearUi()

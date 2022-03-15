@@ -1,4 +1,5 @@
-﻿using Adventure.Managers;
+﻿using System.Text.RegularExpressions;
+using Adventure.Managers;
 using Adventure.Models;
 
 namespace Adventure.Debug;
@@ -63,30 +64,23 @@ public class DebugMenu
 
     private void BattleASlime()
     {
-        var slimes = new Entity[]
+        var slimes = new List<Entity>
         {
-            new()
+            new("Slime A", new SkillSet
             {
-                Name = "Slime",
-                Skills = new()
-                {
-                    Agility = 0,
-                    Arcane = 0
-                }
-            },
-            new()
+                Agility = 0,
+                Arcane = 0
+            }),
+            new("Slime B", new SkillSet
             {
-                Name = "Slime",
-                Skills = new()
-                {
-                    Constitution = 2
-                }
-            },
-            new()
-            {
-                Name = "Slime"
-            }
+                Constitution = 2
+            }),
+            new("Slime C")
         };
+        
+        BattleManager.BeginBattle(slimes);
+        
+        return;
 
         while (true)
         {
@@ -110,12 +104,30 @@ public class DebugMenu
                 case "Offensive Skill":
                     var offensiveSkill = UiManager.ShowChoices(new List<string>
                     {
-                        "Crimson Slash [[(1),Green]]",
-                        "Starlight Strike [[(10),Green]]",
-                        "Quick Slash [[(4),Green]]"
+                        "Crimson Slash (1)",
+                        "Starlight Strike (10)",
+                        "Quick Slash (4)"
                     });
 
-                    break;
+                    var target = UiManager.ShowChoices(slimes.Select(s => s.Name).ToList());
+                    
+                    UiManager.WriteMessage($"You used {Regex.Replace(offensiveSkill, @"\(.*?\)", "")} against {target}.");
+                    UiManager.AwaitUserConfirmation();
+                    
+                    UiManager.WriteMessage("It missed!");
+                    UiManager.AwaitUserConfirmation();
+                    
+                    UiManager.WriteMessage($"{slimes[0]} used {Regex.Replace("Starlight Strike (10)", @"\(.*?\)", "")}.");
+                    UiManager.AwaitUserConfirmation();
+                    
+                    UiManager.WriteMessage("CRITICAL HIT!");
+                    UiManager.WriteMessage("You took 45 damage.");
+                    UiManager.AwaitUserConfirmation();
+                    
+                    UiManager.WriteMessage("[[You have perished., Red]]");
+                    UiManager.AwaitUserConfirmation();
+
+                    return;
                 case "Defensive Skill":
                     var defensiveSkill = UiManager.ShowChoices(new List<string>
                     {

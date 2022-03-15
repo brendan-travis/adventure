@@ -36,4 +36,9 @@ public class SkillSet
     /// Determines the defense of the entity.
     /// </summary>
     public int Resistance { get; set; } = 1;
+
+    /// <summary>
+    /// Determines turn order.
+    /// </summary>
+    public int Celerity { get; set; } = 1;
 }

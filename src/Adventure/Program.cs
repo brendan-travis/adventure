@@ -4,10 +4,7 @@ using Adventure.Locales.Towns.ArcViridian;
 using Adventure.Managers;
 using Adventure.Models;
 
-CharacterManager.CurrentCharacter = new Entity
-{
-    Name = "Arven the Hero"
-};
+CharacterManager.CurrentCharacter = new Entity("Arven the Hero");
 
 
 while (true)
@@ -16,6 +13,7 @@ while (true)
     var choice = UiManager.ShowChoices(new List<string>
     {
         "New Game",
+        "Quit Game",
         "Debug"
     });
 
@@ -30,7 +28,8 @@ while (true)
             {
                 currentLocation = currentLocation.GoTo();
             }
-
             break;
+        case "Quit Game":
+            return;
     }
 }
