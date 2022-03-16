@@ -1,8 +1,8 @@
 ﻿namespace Adventure.Models;
 
-public class StatSet
+public class Stats
 {
-    public StatSet(SkillSet linkedSkills)
+    public Stats(Attributes linkedSkills)
     {
         LinkedSkills = linkedSkills;
 
@@ -10,7 +10,7 @@ public class StatSet
         CurrentStamina = MaximumStamina;
     }
 
-    private SkillSet LinkedSkills { get; }
+    private Attributes LinkedSkills { get; }
 
     public int CurrentHp { get; set; }
 

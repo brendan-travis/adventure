@@ -18,40 +18,26 @@ public static class BattleManager
             UiManager.RedrawUi();
             var choice = UiManager.ShowChoices(new List<string>
             {
-                "Offensive Skill",
-                "Defensive Skill",
-                "Support Skill",
+                "Fight",
                 "Use Item",
                 "Run Away",
             });
 
             switch (choice)
             {
-                case "Offensive Skill":
-                    var offensiveSkill = UiManager.ShowChoices(new List<string>
+                case "Fight":
+                    var skill = UiManager.ShowChoices(new List<string>
                     {
-                        "Crimson Slash (1)",
-                        "Starlight Strike (10)",
-                        "Quick Slash (4)"
+                        "Crimson Slash [[(1), Green]]",
+                        "Starlight Strike [[(10), Green]]",
+                        "Quick Slash [[(4), Green]]",
+                        "Block [[(1), Green]]",
+                        "Little Aegis [[(13), Green]]",
+                        "Breathe Echoes [[(10), Green]]",
+                        "Gather Strength [[(2), Green]]"
                     });
                     
                     OpposingTeam.Clear();
-
-                    break;
-                case "Defensive Skill":
-                    var defensiveSkill = UiManager.ShowChoices(new List<string>
-                    {
-                        "Block [[(1),Green]]",
-                        "Little Aegis [[(13),Green]]"
-                    });
-
-                    break;
-                case "Support Skill":
-                    var supportSkill = UiManager.ShowChoices(new List<string>
-                    {
-                        "Breathe Echoes [[(10),Green]]",
-                        "Gather Strength [[(2),Green]]"
-                    });
 
                     break;
                 case "Use Item":

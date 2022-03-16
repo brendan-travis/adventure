@@ -2,26 +2,24 @@
 
 public class Entity
 {
-    public Entity(string name, SkillSet? skills = null)
+    public Entity(string name, Attributes? skills = null)
     {
         Name = name;
-        Skills = skills ?? new SkillSet();
-        Stats = new StatSet(Skills);
+        Attributes = skills ?? new Attributes();
+        Stats = new Stats(Attributes);
     }
     
     public string Name { get; }
 
-    public SkillSet Skills { get; }
+    public Attributes Attributes { get; }
 
-    public StatSet Stats { get; }
+    public Stats Stats { get; }
     
     public int Level =>
-        this.Skills.Agility +
-        this.Skills.Arcane +
-        this.Skills.Celerity +
-        this.Skills.Constitution +
-        this.Skills.Endurance +
-        this.Skills.Resistance +
-        this.Skills.Stamina +
-        this.Skills.Strength;
+        this.Attributes.Arcane +
+        this.Attributes.Celerity +
+        this.Attributes.Constitution +
+        this.Attributes.Endurance +
+        this.Attributes.Resistance +
+        this.Attributes.Stamina;
 }

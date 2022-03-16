@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using Adventure.Models;
+using System;
 
 namespace Adventure.Managers;
 
@@ -93,7 +94,19 @@ public static class UiManager
         {
             foreach (var choice in choices)
             {
-                WriteMessage(choice == choices[index] ? $"[[> {choice}, Cyan]]" : $"  {choice}");
+                if (choice == choices[index])
+                {
+                    var pieces = Regex.Split(choice, @"(\[\[[^\]]*\]\])");
+                    var message = pieces.Length == 3
+                        ? string.Concat(pieces[0], pieces[1].Split(',')[0][2..])
+                        : choice;
+
+                    WriteMessage($"[[> {message}, Cyan]]");
+                }
+                else
+                {
+                    WriteMessage($"  {choice}");
+                }
             }
 
             var input = Console.ReadKey(true);

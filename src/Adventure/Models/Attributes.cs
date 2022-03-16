@@ -1,6 +1,6 @@
 ﻿namespace Adventure.Models;
 
-public class SkillSet
+public class Attributes
 {
     /// <summary>
     /// Determines the maximum HP.
@@ -16,19 +16,9 @@ public class SkillSet
     /// Determines how much Stamina is recovered per turn.
     /// </summary>
     public int Endurance { get; set; } = 1;
-    
+
     /// <summary>
-    /// Determines the effectiveness of Offensive Skills.
-    /// </summary>
-    public int Strength { get; set; } = 1;
-    
-    /// <summary>
-    /// Determines the effectiveness of Defensive Skills.
-    /// </summary>
-    public int Agility { get; set; } = 1;
-    
-    /// <summary>
-    /// Determines the effectiveness of Support Skills.
+    /// Determines the effectiveness of Skills.
     /// </summary>
     public int Arcane { get; set; } = 1;
     

@@ -66,12 +66,11 @@ public class DebugMenu
     {
         var slimes = new List<Entity>
         {
-            new("Slime A", new SkillSet
+            new("Slime A", new Attributes
             {
-                Agility = 0,
                 Arcane = 0
             }),
-            new("Slime B", new SkillSet
+            new("Slime B", new Attributes
             {
                 Constitution = 2
             }),
