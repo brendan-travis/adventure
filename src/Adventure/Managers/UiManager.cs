@@ -11,14 +11,17 @@ public static class UiManager
     public static void RedrawUi()
     {
         Console.Clear();
-        
+
+        // Player status bar 
         WriteMessage($"[[{CharacterManager.CurrentCharacter.Name},Blue]] " +
                      $"Lvl.[[{CharacterManager.CurrentCharacter.Level},Magenta]] " +
                      $"HP.[[{CharacterManager.CurrentCharacter.Stats.CurrentHp},Red]]/" +
                      $"[[{CharacterManager.CurrentCharacter.Stats.MaximumHp},Red]] " +
                      $"Sta.[[{CharacterManager.CurrentCharacter.Stats.CurrentStamina},Green]]/" +
-                     $"[[{CharacterManager.CurrentCharacter.Stats.MaximumStamina},Green]]");
+                     $"[[{CharacterManager.CurrentCharacter.Stats.MaximumStamina},Green]] " +
+                     $"+[[{AttributeScalingTables.EnduranceToStamina[CharacterManager.CurrentCharacter.Attributes.Endurance]},Green]]");
 
+        // Locale bar
         switch (LocaleBar.Type)
         {
             case LocaleType.Battle:
@@ -36,9 +39,10 @@ public static class UiManager
                 WriteMessage($"{LocaleBar.Type}: [[{LocaleBar.Name},Blue]]");
                 break;
         }
-        
+
         WriteMessage();
 
+        // Opposing team in battle
         if (BattleManager.InBattle)
         {
             foreach (var entity in BattleManager.OpposingTeam)
@@ -48,7 +52,7 @@ public static class UiManager
                              $"HP.[[{entity.Stats.CurrentHp},Red]]/" +
                              $"[[{entity.Stats.MaximumHp},Red]]");
             }
-            
+
             WriteMessage();
         }
     }
@@ -62,7 +66,7 @@ public static class UiManager
     {
         Console.WriteLine();
     }
-    
+
     public static void WriteMessage(string message)
     {
         var pieces = Regex.Split(message, @"(\[\[[^\]]*\]\])");
@@ -94,19 +98,46 @@ public static class UiManager
         {
             foreach (var choice in choices)
             {
-                if (choice == choices[index])
-                {
-                    var pieces = Regex.Split(choice, @"(\[\[[^\]]*\]\])");
-                    var message = pieces.Length == 3
-                        ? string.Concat(pieces[0], pieces[1].Split(',')[0][2..])
-                        : choice;
+                WriteMessage(choice == choices[index] ? $"[[> {choice}, Cyan]]" : $"  {choice}");
+            }
 
-                    WriteMessage($"[[> {message}, Cyan]]");
-                }
-                else
-                {
-                    WriteMessage($"  {choice}");
-                }
+            var input = Console.ReadKey(true);
+
+            ClearPreviousLines(choices.Count);
+
+            switch (input.Key)
+            {
+                case ConsoleKey.DownArrow:
+                    if (index < choices.Count - 1)
+                    {
+                        index++;
+                    }
+
+                    break;
+                case ConsoleKey.UpArrow:
+                    if (index > 0)
+                    {
+                        index--;
+                    }
+
+                    break;
+                case ConsoleKey.Enter:
+                    return choices[index];
+            }
+        }
+    }
+
+    public static Skill ShowChoices(IList<Skill> choices)
+    {
+        var index = 0;
+
+        while (true)
+        {
+            foreach (var choice in choices)
+            {
+                WriteMessage(choice == choices[index]
+                    ? $"[[> {choice.Name}, Cyan]] ([[{choice.StaminaCost}, Green]])"
+                    : $"  {choice.Name} ([[{choice.StaminaCost}, Green]])");
             }
 
             var input = Console.ReadKey(true);

@@ -7,7 +7,7 @@ public static class BattleManager
     public static bool InBattle { get; set; }
 
     public static IList<Entity> OpposingTeam { get; set; }
-    
+
     public static void BeginBattle(IList<Entity> opposingTeam)
     {
         InBattle = true;
@@ -26,18 +26,36 @@ public static class BattleManager
             switch (choice)
             {
                 case "Fight":
-                    var skill = UiManager.ShowChoices(new List<string>
+                    Skill? skill = null;
+
+                    while (skill is null)
                     {
-                        "Crimson Slash [[(1), Green]]",
-                        "Starlight Strike [[(10), Green]]",
-                        "Quick Slash [[(4), Green]]",
-                        "Block [[(1), Green]]",
-                        "Little Aegis [[(13), Green]]",
-                        "Breathe Echoes [[(10), Green]]",
-                        "Gather Strength [[(2), Green]]"
-                    });
+                        UiManager.RedrawUi();
+                        skill = UiManager.ShowChoices(new List<Skill>
+                        {
+                            new("Crimson Slash", 1, SkillType.Damage) { BaseDamage = 10 },
+                            new("Starlight Strike", 10, SkillType.Damage),
+                            new("Quick Slash", 4, SkillType.Damage),
+                            new("Block", 1, SkillType.Damage),
+                            new("Little Aegis", 13, SkillType.Damage),
+                            new("Breathe Echoes", 10, SkillType.Damage),
+                            new("Gather Strength", 2, SkillType.Damage)
+                        });
+
+                        if (CharacterManager.CurrentCharacter.Stats.CurrentStamina >= skill.StaminaCost) continue;
+                        UiManager.WriteMessage("You do not have enough stamina to use that.");
+                        UiManager.AwaitUserConfirmation();
+                        UiManager.RedrawUi();
+                        skill = null;
+                    }
+
+                    CharacterManager.CurrentCharacter.Stats.CurrentStamina -= skill.StaminaCost;
+                    UiManager.RedrawUi();
+                    UiManager.WriteMessage($"You used {skill.Name}.");
+                    UiManager.AwaitUserConfirmation();
                     
-                    OpposingTeam.Clear();
+                    UiManager.WriteMessage($"{opposingTeam[0]} took 0 damage");
+                    UiManager.AwaitUserConfirmation();
 
                     break;
                 case "Use Item":
@@ -50,11 +68,14 @@ public static class BattleManager
                 case "Run Away":
                     UiManager.WriteMessage("You managed to get away");
                     UiManager.AwaitUserConfirmation();
-                    
+
                     OpposingTeam.Clear();
 
                     break;
             }
+
+            CharacterManager.CurrentCharacter.Stats.CurrentStamina +=
+                AttributeScalingTables.EnduranceToStamina[CharacterManager.CurrentCharacter.Attributes.Endurance];
         }
 
         InBattle = false;

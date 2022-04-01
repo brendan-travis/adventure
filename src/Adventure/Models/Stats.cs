@@ -14,7 +14,7 @@ public class Stats
 
     public int CurrentHp { get; set; }
 
-    public int MaximumHp => SkillTables.Hp[LinkedSkills.Constitution];
+    public int MaximumHp => AttributeScalingTables.ConstitutionToHp[LinkedSkills.Constitution];
 
     public int CurrentStamina { get; set; }
 
