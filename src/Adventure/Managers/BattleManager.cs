@@ -33,13 +33,13 @@ public static class BattleManager
                         UiManager.RedrawUi();
                         skill = UiManager.ShowChoices(new List<Skill>
                         {
-                            new("Crimson Slash", 1, SkillType.Damage) { BaseDamage = 10 },
-                            new("Starlight Strike", 10, SkillType.Damage),
-                            new("Quick Slash", 4, SkillType.Damage),
-                            new("Block", 1, SkillType.Damage),
-                            new("Little Aegis", 13, SkillType.Damage),
-                            new("Breathe Echoes", 10, SkillType.Damage),
-                            new("Gather Strength", 2, SkillType.Damage)
+                            new("Crimson Slash", 1, TargetType.SingleOpponent) { BaseDamage = 10 },
+                            new("Starlight Strike", 10, TargetType.AllOpponents),
+                            new("Quick Slash", 4, TargetType.SingleOpponent),
+                            new("Block", 1, TargetType.Self),
+                            new("Little Aegis", 13, TargetType.Self),
+                            new("Breathe Echoes", 10, TargetType.Self),
+                            new("Gather Strength", 2, TargetType.Self)
                         });
 
                         if (CharacterManager.CurrentCharacter.Stats.CurrentStamina >= skill.StaminaCost) continue;
@@ -49,13 +49,48 @@ public static class BattleManager
                         skill = null;
                     }
 
-                    CharacterManager.CurrentCharacter.Stats.CurrentStamina -= skill.StaminaCost;
-                    UiManager.RedrawUi();
-                    UiManager.WriteMessage($"You used {skill.Name}.");
-                    UiManager.AwaitUserConfirmation();
-                    
-                    UiManager.WriteMessage($"{opposingTeam[0]} took 0 damage");
-                    UiManager.AwaitUserConfirmation();
+                    switch (skill.TargetType)
+                    {
+                        case TargetType.SingleOpponent:
+                            UiManager.RedrawUi();
+                            var target = UiManager.ShowChoices(opposingTeam);
+
+                            CharacterManager.CurrentCharacter.Stats.CurrentStamina -= skill.StaminaCost;
+                            UiManager.RedrawUi();
+                            UiManager.WriteMessage($"You used {skill.Name}.");
+                            UiManager.AwaitUserConfirmation();
+
+                            UiManager.WriteMessage($"{target.Name} took 0 damage");
+                            UiManager.AwaitUserConfirmation();
+                            break;
+                        case TargetType.AllOpponents:
+                        {
+                            CharacterManager.CurrentCharacter.Stats.CurrentStamina -= skill.StaminaCost;
+                            UiManager.RedrawUi();
+                            UiManager.WriteMessage($"You used {skill.Name}.");
+                            UiManager.AwaitUserConfirmation();
+
+                            foreach (var opponent in opposingTeam)
+                            {
+                                UiManager.WriteMessage($"{opponent.Name} took 0 damage");
+                            }
+
+                            UiManager.AwaitUserConfirmation();
+                            break;
+                        }
+                        case TargetType.Self:
+                            CharacterManager.CurrentCharacter.Stats.CurrentStamina -= skill.StaminaCost;
+                            UiManager.RedrawUi();
+                            UiManager.WriteMessage($"You used {skill.Name}.");
+                            UiManager.AwaitUserConfirmation();
+                            
+                            UiManager.WriteMessage("But nothing happened.");
+                            UiManager.AwaitUserConfirmation();
+
+                            break;
+                        default:
+                            throw new ArgumentException("The target type of the skills is not yet handled.");
+                    }
 
                     break;
                 case "Use Item":
@@ -76,6 +111,8 @@ public static class BattleManager
 
             CharacterManager.CurrentCharacter.Stats.CurrentStamina +=
                 AttributeScalingTables.EnduranceToStamina[CharacterManager.CurrentCharacter.Attributes.Endurance];
+            
+            // Enemies turn here
         }
 
         InBattle = false;

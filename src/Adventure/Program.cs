@@ -7,29 +7,43 @@ using Adventure.Models;
 CharacterManager.CurrentCharacter = new Entity("Arven the Hero");
 
 
-while (true)
+try
 {
-    UiManager.ClearUi();
-    var choice = UiManager.ShowChoices(new List<string>
+    while (true)
     {
-        "New Game",
-        "Quit Game",
-        "Debug"
-    });
+        UiManager.ClearUi();
+        var choice = UiManager.ShowChoices(new List<string>
+        {
+            "New Game",
+            "Quit Game",
+            "Debug"
+        });
 
-    switch (choice)
-    {
-        case "Debug":
-            new DebugMenu().Launch();
-            break;
-        case "New Game":
-            ILocale currentLocation = new ArcViridian();
-            while (true)
-            {
-                currentLocation = currentLocation.GoTo();
-            }
-            break;
-        case "Quit Game":
-            return;
+        switch (choice)
+        {
+            case "Debug":
+                new DebugMenu().Launch();
+                break;
+            case "New Game":
+                ILocale currentLocation = new ArcViridian();
+                while (true)
+                {
+                    currentLocation = currentLocation.GoTo();
+                }
+            case "Quit Game":
+                return;
+        }
     }
 }
+catch (Exception e)
+{
+    Console.Clear();
+    
+    Console.WriteLine(@"Unfortunately, the application has run into a serious error and must shut down.
+
+Press any key to close the application window.");
+
+    Console.ReadKey(true);
+}
+
+Console.WriteLine("Shutting down ...");
