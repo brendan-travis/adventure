@@ -6,4 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Adventure.Core\Adventure.Core.csproj" />
+      <ProjectReference Include="..\..\Adventure.Utils\Adventure.Utils.csproj" />
+    </ItemGroup>
+
 </Project>
