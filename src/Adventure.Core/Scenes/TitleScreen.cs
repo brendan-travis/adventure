@@ -2,7 +2,12 @@
 
 namespace Adventure.Core.Scenes;
 
-public class TitleScreen : ITitleScreen
+internal class TitleScreen : ITitleScreen
 {
-    
+    public void ProcessTitleScreen()
+    {
+        // Show Options on screen
+        // Read selected option from user
+        // Call forwarding services
+    }
 }
