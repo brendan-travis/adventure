@@ -1,10 +1,18 @@
 ﻿using System.Text.RegularExpressions;
 using Adventure.Core.UserInterface.Interfaces;
+using Adventure.Main.Adapters.Interfaces;
 
 namespace Adventure.Main.UserInterface;
 
 internal class ConsoleMessageWriter : IMessageWriter
 {
+    public ConsoleMessageWriter(IConsoleAdapter consoleAdapter)
+    {
+        this.ConsoleAdapter = consoleAdapter;
+    }
+
+    private IConsoleAdapter ConsoleAdapter { get; }
+    
     public void WriteMessage(string message)
     {
         var pieces = Regex.Split(message, @"(\[\[[^\]]*\]\])");
@@ -15,16 +23,16 @@ internal class ConsoleMessageWriter : IMessageWriter
             {
                 var sub = piece.Split(',');
 
-                Console.ForegroundColor = Enum.Parse<ConsoleColor>(sub[1][..^2]);
-                Console.Write(sub[0].Substring(2, sub[0].Length - 2));
-                Console.ResetColor();
+                this.ConsoleAdapter.ForegroundColor = Enum.Parse<ConsoleColor>(sub[1][..^2]);
+                this.ConsoleAdapter.Write(sub[0].Substring(2, sub[0].Length - 2));
+                this.ConsoleAdapter.ResetColor();
             }
             else
             {
-                Console.Write(piece);
+                this.ConsoleAdapter.Write(piece);
             }
         }
 
-        Console.WriteLine();
+        this.ConsoleAdapter.WriteLine();
     }
 }

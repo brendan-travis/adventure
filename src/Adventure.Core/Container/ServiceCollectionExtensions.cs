@@ -16,6 +16,6 @@ public static class ServiceCollectionExtensions
     /// </summary>
     /// <param name="services">The <see cref="IServiceCollection"/> object in which to register the services.</param>
     /// <returns>The modified <see cref="IServiceCollection"/> to allow for fluent chaining.</returns>
-    public static IServiceCollection AddCoreServices(this IServiceCollection services) =>
-        services.AddTransient<ITitleScreen, TitleScreen>();
+    public static IServiceCollection AddCoreServices(this IServiceCollection services) => services
+        .AddTransient<ITitleScreen, TitleScreen>();
 }

@@ -1,4 +1,6 @@
 ﻿using Adventure.Core.UserInterface.Interfaces;
+using Adventure.Main.Adapters;
+using Adventure.Main.Adapters.Interfaces;
 using Adventure.Main.UserInterface;
 using Adventure.Main.UserInterface.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,8 +19,9 @@ public static class ServiceCollectionExtensions
     /// </summary>
     /// <param name="services">The <see cref="IServiceCollection"/> object in which to register the services.</param>
     /// <returns>The modified <see cref="IServiceCollection"/> to allow for fluent chaining.</returns>
-    public static IServiceCollection AddMainServices(this IServiceCollection services) =>
-        services.AddTransient<IMessageWriter, ConsoleMessageWriter>()
-                .AddTransient<IMessageReader, ConsoleMessageReader>()
-                .AddTransient<IConsoleMessageUtilities, ConsoleMessageUtilities>();
+    public static IServiceCollection AddMainServices(this IServiceCollection services) => services
+        .AddSingleton<IConsoleAdapter, ConsoleAdapter>()
+        .AddTransient<IMessageWriter, ConsoleMessageWriter>()
+        .AddTransient<IMessageReader, ConsoleMessageReader>()
+        .AddTransient<IConsoleMessageUtilities, ConsoleMessageUtilities>();
 }

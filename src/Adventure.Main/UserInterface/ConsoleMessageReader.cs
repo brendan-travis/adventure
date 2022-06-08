@@ -1,19 +1,24 @@
 ﻿using Adventure.Core.UserInterface.Interfaces;
+using Adventure.Main.Adapters.Interfaces;
 using Adventure.Main.UserInterface.Interfaces;
 
 namespace Adventure.Main.UserInterface;
 
 internal class ConsoleMessageReader : IMessageReader
 {
-    public ConsoleMessageReader(IMessageWriter messageWriter, IConsoleMessageUtilities consoleMessageUtilities)
+    public ConsoleMessageReader(IMessageWriter messageWriter, IConsoleMessageUtilities consoleMessageUtilities,
+        IConsoleAdapter consoleAdapter)
     {
         this.MessageWriter = messageWriter;
         this.ConsoleMessageUtilities = consoleMessageUtilities;
+        this.ConsoleAdapter = consoleAdapter;
     }
 
     private IMessageWriter MessageWriter { get; }
-    
+
     private IConsoleMessageUtilities ConsoleMessageUtilities { get; }
+
+    private IConsoleAdapter ConsoleAdapter { get; }
 
     public T ShowChoices<T>(IList<T> choices)
     {
@@ -37,7 +42,7 @@ internal class ConsoleMessageReader : IMessageReader
                         $"The type of the {nameof(choices)} parameter was invalid. {typeof(T)} is not valid.");
             }
 
-            var input = Console.ReadKey(true);
+            var input = this.ConsoleAdapter.ReadKey(true);
             this.ConsoleMessageUtilities.ClearPreviousLines(choices.Count);
 
             switch (input.Key)
