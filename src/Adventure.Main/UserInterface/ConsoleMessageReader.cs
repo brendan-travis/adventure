@@ -1,15 +1,19 @@
 ﻿using Adventure.Core.UserInterface.Interfaces;
+using Adventure.Main.UserInterface.Interfaces;
 
 namespace Adventure.Main.UserInterface;
 
 internal class ConsoleMessageReader : IMessageReader
 {
-    public ConsoleMessageReader(IMessageWriter messageWriter)
+    public ConsoleMessageReader(IMessageWriter messageWriter, IConsoleMessageUtilities consoleMessageUtilities)
     {
-        MessageWriter = messageWriter;
+        this.MessageWriter = messageWriter;
+        this.ConsoleMessageUtilities = consoleMessageUtilities;
     }
 
     private IMessageWriter MessageWriter { get; }
+    
+    private IConsoleMessageUtilities ConsoleMessageUtilities { get; }
 
     public T ShowChoices<T>(IList<T> choices)
     {
@@ -34,7 +38,7 @@ internal class ConsoleMessageReader : IMessageReader
             }
 
             var input = Console.ReadKey(true);
-            // ClearPreviousLines(choices.Count);
+            this.ConsoleMessageUtilities.ClearPreviousLines(choices.Count);
 
             switch (input.Key)
             {
