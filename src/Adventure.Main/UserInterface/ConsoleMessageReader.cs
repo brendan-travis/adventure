@@ -22,6 +22,11 @@ internal class ConsoleMessageReader : IMessageReader
 
     public T ShowChoices<T>(IList<T> choices)
     {
+        if (!choices.Any())
+        {
+            throw new ArgumentException($"The input parameter {nameof(choices)} cannot be empty.");
+        }
+        
         var index = 0;
 
         while (true)

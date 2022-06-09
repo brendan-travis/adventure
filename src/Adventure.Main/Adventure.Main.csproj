@@ -8,6 +8,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>Adventure.Main.UnitTests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <ItemGroup>
       <ProjectReference Include="..\Adventure.Core\Adventure.Core.csproj" />
       <ProjectReference Include="..\Adventure.Utils\Adventure.Utils.csproj" />
       <ProjectReference Include="..\Catalogues\Adventure.CreatureCatalogue\Adventure.CreatureCatalogue.csproj" />
