@@ -1,10 +1,10 @@
-name: Build And Test
+name: Build and Test
 on:
   push:
     branches:    
       - main
 jobs:
-  Build-And-Test:
+  BuildAndTest:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
