@@ -1,4 +1,5 @@
-﻿using Adventure.Main.Scenes.Interfaces;
+﻿using System.Diagnostics.CodeAnalysis;
+using Adventure.Main.Scenes.Interfaces;
 using Adventure.Main.UserInterface.Interfaces;
 
 namespace Adventure.Main.Scenes;
@@ -18,6 +19,7 @@ internal class TitleScene : ITitleScene
 
     private IMessageWriter MessageWriter { get; }
 
+    [SuppressMessage("ReSharper.DPA", "DPA0002: Excessive memory allocations in SOH", MessageId = "type: Enumerator[Adventure.Main.Entities.Entity]; size: 537MB")]
     public void ProcessTitleScene()
     {
         while (true)
