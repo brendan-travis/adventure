@@ -1,6 +1,6 @@
-﻿using Adventure.Core.Entities;
+﻿using Adventure.Main.Entities;
 
-namespace Adventure.Core.Scenes.Interfaces;
+namespace Adventure.Main.Scenes.Interfaces;
 
 public interface IEncounterScene
 {

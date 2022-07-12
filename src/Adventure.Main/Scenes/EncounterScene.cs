@@ -1,8 +1,8 @@
-﻿using Adventure.Core.Encounter.Interfaces;
-using Adventure.Core.Entities;
-using Adventure.Core.Scenes.Interfaces;
+﻿using Adventure.Main.Encounter.Interfaces;
+using Adventure.Main.Entities;
+using Adventure.Main.Scenes.Interfaces;
 
-namespace Adventure.Core.Scenes;
+namespace Adventure.Main.Scenes;
 
 public class EncounterScene : IEncounterScene
 {

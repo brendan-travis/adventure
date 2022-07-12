@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Adventure.Core.UserInterface.Interfaces;
 using Adventure.Main.Adapters.Interfaces;
 using Adventure.Main.UserInterface;
 using Adventure.Main.UserInterface.Interfaces;
 using FluentAssertions;
 using NSubstitute;
 using Xunit;
+using IMessageWriter = Adventure.Main.UserInterface.Interfaces.IMessageWriter;
 
 namespace Adventure.Main.UnitTests.UserInterface;
 

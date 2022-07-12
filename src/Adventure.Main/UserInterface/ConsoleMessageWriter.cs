@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
-using Adventure.Core.UserInterface.Interfaces;
 using Adventure.Main.Adapters.Interfaces;
+using Adventure.Main.UserInterface.Interfaces;
 
 namespace Adventure.Main.UserInterface;
 

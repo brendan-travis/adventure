@@ -1,4 +1,4 @@
-﻿namespace Adventure.Core.Scenes.Interfaces;
+﻿namespace Adventure.Main.Scenes.Interfaces;
 
 /// <summary>
 /// The top level menu serving as the first user-controllable entry point of the application.

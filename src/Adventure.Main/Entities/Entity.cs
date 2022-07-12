@@ -1,4 +1,4 @@
-﻿namespace Adventure.Core.Entities;
+﻿namespace Adventure.Main.Entities;
 
 public class Entity
 {

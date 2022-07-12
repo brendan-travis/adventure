@@ -1,7 +1,8 @@
-﻿using Adventure.Core.Entities;
-using Adventure.Core.UserInterface.Interfaces;
+﻿using Adventure.Main.Entities;
+using Adventure.Main.Scenes.Interfaces;
+using Adventure.Main.UserInterface.Interfaces;
 
-namespace Adventure.Core.Scenes.Interfaces;
+namespace Adventure.Main.Scenes;
 
 public class DebugScene : IDebugScene
 {

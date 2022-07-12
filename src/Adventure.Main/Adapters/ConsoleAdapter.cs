@@ -1,18 +1,35 @@
-﻿using Adventure.Main.Adapters.Interfaces;
+﻿using System.Runtime.Versioning;
+using Adventure.Main.Adapters.Interfaces;
 
 namespace Adventure.Main.Adapters;
 
 internal class ConsoleAdapter : IConsoleAdapter
 {
-    public int BufferWidth { get => Console.BufferWidth; set => Console.BufferWidth = value; }
-    public int CursorTop { get => Console.CursorTop; set => Console.CursorTop = value; }
-    public ConsoleColor ForegroundColor { get => Console.ForegroundColor; set => Console.ForegroundColor = value; }
+    [SupportedOSPlatform("windows")]
+    public int BufferWidth
+    {
+        get => Console.BufferWidth;
+        set => Console.BufferWidth = value;
+    }
+
+    public int CursorTop
+    {
+        get => Console.CursorTop;
+        set => Console.CursorTop = value;
+    }
+
+    public ConsoleColor ForegroundColor
+    {
+        get => Console.ForegroundColor;
+        set => Console.ForegroundColor = value;
+    }
 
     public void WriteLine(string format, object arg0) => Console.WriteLine(format, arg0);
 
     public void WriteLine(string format, object arg0, object arg1) => Console.WriteLine(format, arg0, arg1);
 
-    public void WriteLine(string format, object arg0, object arg1, object arg2) => Console.WriteLine(format, arg0, arg1, arg2);
+    public void WriteLine(string format, object arg0, object arg1, object arg2) =>
+        Console.WriteLine(format, arg0, arg1, arg2);
 
     public void WriteLine(string format, object[] arg) => Console.WriteLine(format, arg);
 
@@ -56,21 +73,32 @@ internal class ConsoleAdapter : IConsoleAdapter
 
     public void ResetColor() => Console.ResetColor();
 
+    [SupportedOSPlatform("windows")]
     public void SetBufferSize(int width, int height) => Console.SetBufferSize(width, height);
 
+    [SupportedOSPlatform("windows")]
     public void SetWindowPosition(int left, int top) => Console.SetWindowPosition(left, top);
 
+    [SupportedOSPlatform("windows")]
     public void SetWindowSize(int width, int height) => Console.SetWindowSize(width, height);
 
-    public ValueTuple<int,int> GetCursorPosition() => Console.GetCursorPosition();
+    public ValueTuple<int, int> GetCursorPosition() => Console.GetCursorPosition();
 
     public void Beep() => Console.Beep();
 
+    [SupportedOSPlatform("windows")]
     public void Beep(int frequency, int duration) => Console.Beep(frequency, duration);
 
-    public void MoveBufferArea(int sourceLeft, int sourceTop, int sourceWidth, int sourceHeight, int targetLeft, int targetTop) => Console.MoveBufferArea(sourceLeft, sourceTop, sourceWidth, sourceHeight, targetLeft, targetTop);
+    [SupportedOSPlatform("windows")]
+    public void MoveBufferArea(int sourceLeft, int sourceTop, int sourceWidth, int sourceHeight, int targetLeft,
+        int targetTop) =>
+        Console.MoveBufferArea(sourceLeft, sourceTop, sourceWidth, sourceHeight, targetLeft, targetTop);
 
-    public void MoveBufferArea(int sourceLeft, int sourceTop, int sourceWidth, int sourceHeight, int targetLeft, int targetTop, char sourceChar, ConsoleColor sourceForeColor, ConsoleColor sourceBackColor) => Console.MoveBufferArea(sourceLeft, sourceTop, sourceWidth, sourceHeight, targetLeft, targetTop, sourceChar, sourceForeColor, sourceBackColor);
+    [SupportedOSPlatform("windows")]
+    public void MoveBufferArea(int sourceLeft, int sourceTop, int sourceWidth, int sourceHeight, int targetLeft,
+        int targetTop, char sourceChar, ConsoleColor sourceForeColor, ConsoleColor sourceBackColor) =>
+        Console.MoveBufferArea(sourceLeft, sourceTop, sourceWidth, sourceHeight, targetLeft, targetTop, sourceChar,
+            sourceForeColor, sourceBackColor);
 
     public void Clear() => Console.Clear();
 

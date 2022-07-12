@@ -1,7 +1,7 @@
-﻿using Adventure.Core.Scenes.Interfaces;
-using Adventure.Core.UserInterface.Interfaces;
+﻿using Adventure.Main.Scenes.Interfaces;
+using Adventure.Main.UserInterface.Interfaces;
 
-namespace Adventure.Core.Scenes;
+namespace Adventure.Main.Scenes;
 
 internal class TitleScene : ITitleScene
 {

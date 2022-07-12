@@ -1,10 +1,12 @@
-﻿using Adventure.Core.Encounter.Interfaces;
-using Adventure.Core.UserInterface.Interfaces;
-using Adventure.Main.Adapters;
+﻿using Adventure.Main.Adapters;
 using Adventure.Main.Adapters.Interfaces;
+using Adventure.Main.Encounter;
+using Adventure.Main.Encounter.Interfaces;
+using Adventure.Main.Scenes;
 using Adventure.Main.UserInterface;
 using Adventure.Main.UserInterface.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using Adventure.Main.Scenes.Interfaces;
 
 namespace Adventure.Main.Container;
 
@@ -24,5 +26,9 @@ public static class ServiceCollectionExtensions
         .AddSingleton<IConsoleAdapter, ConsoleAdapter>()
         .AddTransient<IMessageWriter, ConsoleMessageWriter>()
         .AddTransient<IMessageReader, ConsoleMessageReader>()
-        .AddTransient<IConsoleMessageUtilities, ConsoleMessageUtilities>();
+        .AddTransient<IConsoleMessageUtilities, ConsoleMessageUtilities>()
+        .AddTransient<IBattleManager, BattleManager>()
+        .AddTransient<IDebugScene, DebugScene>()
+        .AddTransient<IEncounterScene, EncounterScene>()
+        .AddTransient<ITitleScene, TitleScene>();
 }

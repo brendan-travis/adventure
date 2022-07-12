@@ -1,5 +1,4 @@
-﻿using Adventure.Main.Adapters.Interfaces;
-using Adventure.Main.Container;
+﻿using Adventure.Main.Container;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;

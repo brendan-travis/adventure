@@ -1,6 +1,6 @@
-﻿using Adventure.Core.Entities;
+﻿using Adventure.Main.Entities;
 
-namespace Adventure.Core.Encounter.Interfaces;
+namespace Adventure.Main.Encounter.Interfaces;
 
 public interface IBattleManager
 {

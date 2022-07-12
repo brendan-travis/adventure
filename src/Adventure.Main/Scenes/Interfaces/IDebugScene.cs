@@ -1,4 +1,4 @@
-﻿namespace Adventure.Core.Scenes.Interfaces;
+﻿namespace Adventure.Main.Scenes.Interfaces;
 
 public interface IDebugScene
 {

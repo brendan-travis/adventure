@@ -14,14 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Adventure.Core\Adventure.Core.csproj" />
-      <ProjectReference Include="..\Adventure.Utils\Adventure.Utils.csproj" />
-      <ProjectReference Include="..\Catalogues\Adventure.CreatureCatalogue\Adventure.CreatureCatalogue.csproj" />
-      <ProjectReference Include="..\Catalogues\Adventure.LocaleCatalogue\Adventure.LocaleCatalogue.csproj" />
-      <ProjectReference Include="..\Catalogues\Adventure.SkillCatalogue\Adventure.SkillCatalogue.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     </ItemGroup>
 
