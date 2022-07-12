@@ -14,7 +14,7 @@ public class TitleScreenTests
     public void ProcessTitleScreen_WhenCalled_DisplaysOptionsViaMessageReader()
     {
         // Arrange / Act
-        this.GetSystemUnderTest().ProcessTitleScreen();
+        this.GetSystemUnderTest().ProcessTitleScene();
         
         // Assert
         this.MessageReader.Received(1).ShowChoices(Arg.Any<List<string>>());
@@ -24,7 +24,7 @@ public class TitleScreenTests
     
     #region Setup
 
-    private TitleScreen GetSystemUnderTest() => new(this.MessageReader);
+    private TitleScene GetSystemUnderTest() => new(this.MessageReader);
 
     private IMessageReader MessageReader { get; } = Substitute.For<IMessageReader>();
 

@@ -1,4 +1,5 @@
-﻿using Adventure.Core.UserInterface.Interfaces;
+﻿using Adventure.Core.Encounter.Interfaces;
+using Adventure.Core.UserInterface.Interfaces;
 using Adventure.Main.Adapters;
 using Adventure.Main.Adapters.Interfaces;
 using Adventure.Main.UserInterface;

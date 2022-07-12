@@ -10,7 +10,7 @@ try
         .AddCoreServices()
         .BuildServiceProvider();
 
-    serviceProvider.GetService<ITitleScreen>()!.ProcessTitleScreen();
+    serviceProvider.GetService<ITitleScene>()!.ProcessTitleScene();
 }
 catch (Exception e)
 {

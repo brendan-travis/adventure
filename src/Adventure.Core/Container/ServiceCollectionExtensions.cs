@@ -1,4 +1,6 @@
-﻿using Adventure.Core.Scenes;
+﻿using Adventure.Core.Encounter;
+using Adventure.Core.Encounter.Interfaces;
+using Adventure.Core.Scenes;
 using Adventure.Core.Scenes.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,5 +19,8 @@ public static class ServiceCollectionExtensions
     /// <param name="services">The <see cref="IServiceCollection"/> object in which to register the services.</param>
     /// <returns>The modified <see cref="IServiceCollection"/> to allow for fluent chaining.</returns>
     public static IServiceCollection AddCoreServices(this IServiceCollection services) => services
-        .AddTransient<ITitleScreen, TitleScreen>();
+        .AddTransient<ITitleScene, TitleScene>()
+        .AddTransient<IDebugScene, DebugScene>()
+        .AddTransient<IEncounterScene, EncounterScene>()
+        .AddTransient<IBattleManager, BattleManager>();
 }
