@@ -10,4 +10,10 @@ public interface IMessageWriter
     /// </summary>
     /// <param name="message">The message to write.</param>
     public void WriteMessage(string message);
+
+    /// <summary>
+    /// Redraws the screen to remove temporary information.
+    /// Also used to update static informational objects on screen.
+    /// </summary>
+    public void ResetUi();
 }

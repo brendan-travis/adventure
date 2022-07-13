@@ -35,4 +35,9 @@ internal class ConsoleMessageWriter : IMessageWriter
 
         this.ConsoleAdapter.WriteLine();
     }
+
+    public void ResetUi()
+    {
+        Console.Clear();
+    }
 }

@@ -15,4 +15,10 @@ public interface IMessageReader
     /// </typeparam>
     /// <returns></returns>
     public T ShowChoices<T>(IList<T> choices);
+
+    /// <summary>
+    /// Wait for the user to press a key before continuing.
+    /// Useful for managing processes to limit how fast messages come through.
+    /// </summary>
+    public void WaitForInput();
 }
