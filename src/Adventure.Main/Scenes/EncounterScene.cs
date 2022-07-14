@@ -22,23 +22,19 @@ public class EncounterScene : IEncounterScene
 
     public void ProcessEncounter(Entity player, Entity opponent)
     {
-        // Process Battle
+        this.MessageWriter.RedrawUi(player, opponent);        
+        
         var participants = new List<Entity> { player, opponent };
 
         while (participants.All(p => p.CurrentHealth != 0))
         {
-            foreach (var participant in participants)
+            foreach (var participant in participants.TakeWhile(_ => participants.All(p => p.CurrentHealth != 0)))
             {
-                if (participants.Any(p => p.CurrentHealth == 0))
-                {
-                    break;
-                }
-
                 if (participant == player) this.BattleManager.ProcessPlayerTurn(player, opponent);
                 else this.BattleManager.ProcessOpponentTurn(player, opponent);
 
                 this.MessageReader.WaitForInput();
-                this.MessageWriter.ResetUi();
+                this.MessageWriter.RedrawUi(player, opponent);
             }
         }
 
@@ -46,6 +42,6 @@ public class EncounterScene : IEncounterScene
         else this.BattleManager.ProcessLoss(player);
 
         this.MessageReader.WaitForInput();
-        this.MessageWriter.ResetUi();
+        this.MessageWriter.RedrawUi(player);
     }
 }

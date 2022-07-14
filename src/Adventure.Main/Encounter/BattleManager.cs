@@ -23,10 +23,11 @@ public class BattleManager : IBattleManager
         switch (choice.ToUpper())
         {
             case "ATTACK":
-                this.MessageWriter.WriteMessage($"[[{opponent.Name},Green]] took 1100 damage.");
-                opponent.CurrentHealth -= 1100;
+                this.MessageWriter.WriteMessage($"[[{player.Name},Blue]] swings at [[{opponent.Name},Green]].");
+                this.MessageReader.WaitForInput();
+                this.MessageWriter.WriteMessage($"[[{opponent.Name},Green]] took 610 damage.");
+                opponent.CurrentHealth -= 610;
                 if (opponent.CurrentHealth < 0) opponent.CurrentHealth = 0; 
-                this.MessageWriter.WriteMessage($"[[{opponent.Name},Green]] has [[{opponent.CurrentHealth},Yellow]] remaining.");
                 break;
             case "RUN AWAY":
                 this.MessageWriter.WriteMessage("You could not escape.");
@@ -36,10 +37,11 @@ public class BattleManager : IBattleManager
 
     public void ProcessOpponentTurn(Entity player, Entity opponent)
     {
+        this.MessageWriter.WriteMessage($"[[{opponent.Name},Green]] swings at [[{player.Name},Blue]].");
+        this.MessageReader.WaitForInput();
         this.MessageWriter.WriteMessage($"[[{opponent.Name},Green]] attacks for 70 damage.");
-        player.CurrentHealth -= 110;
+        player.CurrentHealth -= 70;
         if (player.CurrentHealth < 0) player.CurrentHealth = 0; 
-        this.MessageWriter.WriteMessage($"[[{player.Name},Green]] has [[{player.CurrentHealth},Yellow]] remaining.");
     }
 
     public void ProcessVictory(Entity player, Entity opponent)

@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using Adventure.Main.Adapters.Interfaces;
+using Adventure.Main.Entities;
 using Adventure.Main.UserInterface.Interfaces;
 
 namespace Adventure.Main.UserInterface;
@@ -36,8 +37,23 @@ internal class ConsoleMessageWriter : IMessageWriter
         this.ConsoleAdapter.WriteLine();
     }
 
-    public void ResetUi()
+    public void RedrawUi(Entity currentCharacter, Entity? battleOpponent = null)
     {
         Console.Clear();
+        
+        // Player status bar 
+        this.WriteMessage($"[[{currentCharacter.Name},Blue]] " +
+                          $"HP.[[{currentCharacter.CurrentHealth},Red]]/" +
+                          $"[[{currentCharacter.MaxHealth},Red]]");
+        
+        // Battle data
+        if (battleOpponent != null)
+        {
+            this.WriteMessage($"vs. [[{battleOpponent.Name},Red]] " +
+                         $"HP.[[{battleOpponent.CurrentHealth},Red]]/" +
+                         $"[[{battleOpponent.MaxHealth},Red]]");
+        }
+
+        this.ConsoleAdapter.WriteLine();
     }
 }
