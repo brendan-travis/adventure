@@ -2,5 +2,5 @@
 
 public interface IDamageCalculator
 {
-    int Calculate(int attackSkill);
+    int Calculate(int actorAttackSkill, int targetDefenceSkill);
 }
