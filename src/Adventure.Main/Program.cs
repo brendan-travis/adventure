@@ -18,7 +18,7 @@ try
     var scope = host.Services.CreateScope();
 
     logger = scope.ServiceProvider.GetService<ILogger>();
-    logger?.Information("Application starting.");
+    logger?.Information("Application starting");
 
     scope.ServiceProvider.GetService<ITitleScene>()?.ProcessTitleScene();
 }
@@ -32,5 +32,5 @@ catch (Exception e)
     Console.ReadKey(true);
 }
 
-logger?.Information("Application shutting down.");
+logger?.Information("Application shutting down");
 Console.WriteLine("Shutting down ...");

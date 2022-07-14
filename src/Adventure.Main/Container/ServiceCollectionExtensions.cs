@@ -7,6 +7,8 @@ using Adventure.Main.UserInterface;
 using Adventure.Main.UserInterface.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Adventure.Main.Scenes.Interfaces;
+using Adventure.Main.Utils;
+using Adventure.Main.Utils.Interfaces;
 
 namespace Adventure.Main.Container;
 
@@ -30,5 +32,6 @@ public static class ServiceCollectionExtensions
         .AddTransient<IBattleManager, BattleManager>()
         .AddTransient<IDebugScene, DebugScene>()
         .AddTransient<IEncounterScene, EncounterScene>()
-        .AddTransient<ITitleScene, TitleScene>();
+        .AddTransient<ITitleScene, TitleScene>()
+        .AddTransient<IDamageCalculator, DamageCalculator>();
 }
