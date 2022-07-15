@@ -52,7 +52,7 @@ internal class ConsoleMessageWriter : IMessageWriter
         // Battle data
         if (battleOpponents != null)
         {
-            foreach (var opponent in battleOpponents.Where(opponent => opponent.CurrentHealth > 0))
+            foreach (var opponent in battleOpponents.Where(o => o.CurrentHealth > 0))
             {
                 this.WriteMessage($"* [[{opponent.Name},Red]] " +
                                   $"HP.[[{opponent.CurrentHealth},Red]]/" +

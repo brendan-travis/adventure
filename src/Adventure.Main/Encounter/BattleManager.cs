@@ -27,8 +27,8 @@ public class BattleManager : IBattleManager
         switch (choice.ToUpper())
         {
             case "ATTACK":
-                var opponent = opponents.First(opponent => opponent.CurrentHealth > 0);
-                
+                var opponent = this.MessageReader.ShowChoices(opponents.Where(o => o.CurrentHealth > 0).ToList());
+
                 this.MessageWriter.WriteMessage($"[[{player.Name},Blue]] swings at [[{opponent.Name},Green]].");
                 this.MessageReader.WaitForInput();
 
@@ -43,7 +43,7 @@ public class BattleManager : IBattleManager
                     this.MessageReader.WaitForInput();
                     this.MessageWriter.WriteMessage($"[[{opponent.Name},Green]] has been defeated.");
                 }
-                
+
                 break;
             case "RUN AWAY":
                 this.MessageWriter.WriteMessage("You could not escape.");

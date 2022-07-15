@@ -40,10 +40,10 @@ public class EncounterScene : IEncounterScene
 
             participants.Enqueue(currentParticipant);
 
-            participants = new Queue<Entity>(participants.Where(participant => participant.CurrentHealth > 0));
+            participants = new Queue<Entity>(participants.Where(p => p.CurrentHealth > 0));
 
             if ((participants.Count == 1 && participants.First() == player) ||
-                participants.All(participant => participant != player))
+                participants.All(p => p != player))
             {
                 inBattle = false;
             }

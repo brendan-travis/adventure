@@ -1,4 +1,5 @@
 ﻿using Adventure.Main.Adapters.Interfaces;
+using Adventure.Main.Entities;
 using Adventure.Main.UserInterface.Interfaces;
 
 namespace Adventure.Main.UserInterface;
@@ -38,6 +39,15 @@ internal class ConsoleMessageReader : IMessageReader
                         this.MessageWriter.WriteMessage(choice == stringChoices[index]
                             ? $"[[> {choice}, Cyan]]"
                             : $"  {choice}");
+                    }
+
+                    break;
+                case IList<Entity> entityChoices:
+                    foreach (var choice in entityChoices)
+                    {
+                        this.MessageWriter.WriteMessage(choice == entityChoices[index]
+                            ? $"[[> {choice.Name}, Cyan]]"
+                            : $"  {choice.Name}");
                     }
 
                     break;
