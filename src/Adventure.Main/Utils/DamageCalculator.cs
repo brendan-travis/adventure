@@ -13,7 +13,6 @@ public class DamageCalculator : IDamageCalculator
     public int Calculate(int actorAttackSkill, int targetDefenceSkill)
     {
         if (targetDefenceSkill > actorAttackSkill) targetDefenceSkill = actorAttackSkill;
-
         
         var random = this.Random.Next(DamageRandomRange) / 100m;
         var attackValue = actorAttackSkill * BaseDamage +

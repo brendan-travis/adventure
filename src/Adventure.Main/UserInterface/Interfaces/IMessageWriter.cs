@@ -18,6 +18,6 @@ public interface IMessageWriter
     /// Also used to update static informational objects on screen.
     /// </summary>
     /// <param name="currentCharacter">The current player's character.</param>
-    /// <param name="battleOpponent">The battle opponent. Can be omitted if not in a battle.</param>
-    public void RedrawUi(Entity currentCharacter, Entity? battleOpponent = null);
+    /// <param name="battleOpponents">The battle opponents. Can be omitted if not in a battle.</param>
+    public void RedrawUi(Entity? currentCharacter = null, IList<Entity>? battleOpponents = null);
 }

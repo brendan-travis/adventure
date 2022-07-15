@@ -24,6 +24,7 @@ internal class TitleScene : ITitleScene
     {
         while (true)
         {
+            this.MessageWriter.RedrawUi(null);
             var selectedOption = this.MessageReader.ShowChoices(new List<string>
             {
                 "New Game",

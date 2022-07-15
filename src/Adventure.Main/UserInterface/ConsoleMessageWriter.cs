@@ -13,7 +13,7 @@ internal class ConsoleMessageWriter : IMessageWriter
     }
 
     private IConsoleAdapter ConsoleAdapter { get; }
-    
+
     public void WriteMessage(string message)
     {
         var pieces = Regex.Split(message, @"(\[\[[^\]]*\]\])");
@@ -37,21 +37,27 @@ internal class ConsoleMessageWriter : IMessageWriter
         this.ConsoleAdapter.WriteLine();
     }
 
-    public void RedrawUi(Entity currentCharacter, Entity? battleOpponent = null)
+    public void RedrawUi(Entity? currentCharacter = null, IList<Entity>? battleOpponents = null)
     {
         Console.Clear();
-        
+
         // Player status bar 
-        this.WriteMessage($"[[{currentCharacter.Name},Blue]] " +
-                          $"HP.[[{currentCharacter.CurrentHealth},Red]]/" +
-                          $"[[{currentCharacter.MaxHealth},Red]]");
-        
-        // Battle data
-        if (battleOpponent != null)
+        if (currentCharacter != null)
         {
-            this.WriteMessage($"vs. [[{battleOpponent.Name},Red]] " +
-                         $"HP.[[{battleOpponent.CurrentHealth},Red]]/" +
-                         $"[[{battleOpponent.MaxHealth},Red]]");
+            this.WriteMessage($"[[{currentCharacter.Name},Blue]] " +
+                              $"HP.[[{currentCharacter.CurrentHealth},Red]]/" +
+                              $"[[{currentCharacter.MaxHealth},Red]]");
+        }
+
+        // Battle data
+        if (battleOpponents != null)
+        {
+            foreach (var opponent in battleOpponents.Where(opponent => opponent.CurrentHealth > 0))
+            {
+                this.WriteMessage($"* [[{opponent.Name},Red]] " +
+                                  $"HP.[[{opponent.CurrentHealth},Red]]/" +
+                                  $"[[{opponent.MaxHealth},Red]]");
+            }
         }
 
         this.ConsoleAdapter.WriteLine();

@@ -25,8 +25,12 @@ public class DebugScene : IDebugScene
         this.MessageReader.WaitForInput();
         
         var player = new Entity("Arven the Hero", 5000, 10, 8);
-        var opponent = new Entity("Big Slime", 10000, 4, 1);
+        var opponents = new List<Entity>
+        {
+            new("Slime A", 1000, 4, 1),
+            new("Slime B", 1000, 4, 1)
+        };
 
-        this.EncounterScene.ProcessEncounter(player, opponent);
+        this.EncounterScene.ProcessEncounter(player, opponents);
     }
 }
