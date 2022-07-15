@@ -4,7 +4,13 @@ namespace Adventure.Main.Encounter.Interfaces;
 
 public interface IBattleManager
 {
-    public void ProcessPlayerTurn(Entity player, IList<Entity> opponents);
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="player"></param>
+    /// <param name="opponents"></param>
+    /// <returns>True if the player has run away from battle.</returns>
+    public bool ProcessPlayerTurn(Entity player, IList<Entity> opponents);
 
     public void ProcessOpponentTurn(Entity player, Entity opponent);
 

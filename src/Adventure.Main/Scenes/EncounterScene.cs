@@ -28,32 +28,41 @@ public class EncounterScene : IEncounterScene
         var participants = new Queue<Entity>();
         participants.Enqueue(player);
         foreach (var opponent in opponents) participants.Enqueue(opponent);
-        
-        var inBattle = true;
 
-        while (inBattle)
+        var playerRanAway = false;
+        while (true)
         {
             var currentParticipant = participants.Dequeue();
-            
-            if (currentParticipant == player) this.BattleManager.ProcessPlayerTurn(player, opponents);
+
+            if (currentParticipant == player)
+            {
+                playerRanAway = this.BattleManager.ProcessPlayerTurn(player, opponents);
+                if (playerRanAway)
+                {
+                    break;
+                }
+            }
             else this.BattleManager.ProcessOpponentTurn(player, currentParticipant);
 
             participants.Enqueue(currentParticipant);
 
             participants = new Queue<Entity>(participants.Where(p => p.CurrentHealth > 0));
 
+            this.MessageReader.WaitForInput();
+            this.MessageWriter.RedrawUi(player, opponents);
+            
             if ((participants.Count == 1 && participants.First() == player) ||
                 participants.All(p => p != player))
             {
-                inBattle = false;
+                break;
             }
-            
-            this.MessageReader.WaitForInput();
-            this.MessageWriter.RedrawUi(player, opponents);
         }
 
-        if (player.CurrentHealth > 0) this.BattleManager.ProcessVictory(player, opponents);
-        else this.BattleManager.ProcessLoss(player);
+        if (!playerRanAway)
+        {
+            if (player.CurrentHealth > 0) this.BattleManager.ProcessVictory(player, opponents);
+            else this.BattleManager.ProcessLoss(player);
+        }
 
         this.MessageReader.WaitForInput();
         this.MessageWriter.RedrawUi(player);

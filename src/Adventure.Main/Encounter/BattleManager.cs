@@ -20,7 +20,9 @@ public class BattleManager : IBattleManager
 
     private IDamageCalculator DamageCalculator { get; }
 
-    public void ProcessPlayerTurn(Entity player, IList<Entity> opponents)
+    private Random Random { get; } = new();
+
+    public bool ProcessPlayerTurn(Entity player, IList<Entity> opponents)
     {
         var choice = this.MessageReader.ShowChoices(new List<string> { "Attack", "Run away" });
 
@@ -46,9 +48,23 @@ public class BattleManager : IBattleManager
 
                 break;
             case "RUN AWAY":
-                this.MessageWriter.WriteMessage("You could not escape.");
+                var runAwayCheck = this.Random.Next(2);
+
+                if (runAwayCheck == 0)
+                {
+                    this.MessageWriter.WriteMessage("You could not escape.");
+                }
+                else
+                {
+                    this.MessageWriter.WriteMessage("You managed to escape.");
+                    
+                    return true;
+                }
+                
                 break;
         }
+
+        return false;
     }
 
     public void ProcessOpponentTurn(Entity player, Entity opponent)
