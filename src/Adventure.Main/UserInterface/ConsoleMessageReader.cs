@@ -85,6 +85,6 @@ internal class ConsoleMessageReader : IMessageReader
 
     public void WaitForInput()
     {
-        Console.ReadKey(true);
+        this.ConsoleAdapter.ReadKey(true);
     }
 }

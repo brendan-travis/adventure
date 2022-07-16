@@ -34,7 +34,7 @@ public class BattleManager : IBattleManager
                 this.MessageWriter.WriteMessage($"[[{player.Name},Blue]] swings at [[{opponent.Name},Green]].");
                 this.MessageReader.WaitForInput();
 
-                var damage = this.DamageCalculator.Calculate(player.Attack, opponent.Defence);
+                var damage = this.DamageCalculator.Calculate(player.SkillSet.Attack, opponent.SkillSet.Defence);
 
                 this.MessageWriter.WriteMessage($"[[{opponent.Name},Green]] took {damage} damage.");
                 opponent.CurrentHealth -= damage;
@@ -72,7 +72,7 @@ public class BattleManager : IBattleManager
         this.MessageWriter.WriteMessage($"[[{opponent.Name},Green]] swings at [[{player.Name},Blue]].");
         this.MessageReader.WaitForInput();
 
-        var damage = this.DamageCalculator.Calculate(opponent.Attack, player.Defence);
+        var damage = this.DamageCalculator.Calculate(opponent.SkillSet.Attack, player.SkillSet.Defence);
 
         this.MessageWriter.WriteMessage($"[[{opponent.Name},Green]] attacks for {damage} damage.");
         player.CurrentHealth -= damage;

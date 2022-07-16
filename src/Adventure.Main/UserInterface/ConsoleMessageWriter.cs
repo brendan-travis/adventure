@@ -39,24 +39,27 @@ internal class ConsoleMessageWriter : IMessageWriter
 
     public void RedrawUi(Entity? currentCharacter = null, IList<Entity>? battleOpponents = null)
     {
-        Console.Clear();
+        this.ConsoleAdapter.Clear();
 
         // Player status bar 
         if (currentCharacter != null)
         {
             this.WriteMessage($"[[{currentCharacter.Name},Blue]] " +
+                              $"Lv.[[{currentCharacter.SkillSet.TotalLevel},Yellow]] " +
                               $"HP.[[{currentCharacter.CurrentHealth},Red]]/" +
-                              $"[[{currentCharacter.MaxHealth},Red]]");
+                              $"[[{currentCharacter.MaxHealth},Red]] ");
         }
 
         // Battle data
         if (battleOpponents != null)
         {
+            this.ConsoleAdapter.WriteLine();
             foreach (var opponent in battleOpponents.Where(o => o.CurrentHealth > 0))
             {
                 this.WriteMessage($"* [[{opponent.Name},Red]] " +
+                                  $"Lv.[[{opponent.SkillSet.TotalLevel},Yellow]] " +
                                   $"HP.[[{opponent.CurrentHealth},Red]]/" +
-                                  $"[[{opponent.MaxHealth},Red]]");
+                                  $"[[{opponent.MaxHealth},Red]] ");
             }
         }
 

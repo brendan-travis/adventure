@@ -24,7 +24,7 @@ public class DebugScene : IDebugScene
         this.MessageWriter.WriteMessage("DEBUG: Beginning sample battle with a Slime.");
         this.MessageReader.WaitForInput();
         
-        var player = new Entity("Arven the Hero", 5000, 10, 8);
+        var player = new Entity("Arven the Hero", 5000, 10, 10);
         var opponents = new List<Entity>
         {
             new("Slime A", 1000, 4, 1),
