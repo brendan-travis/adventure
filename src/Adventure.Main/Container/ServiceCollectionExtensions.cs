@@ -33,5 +33,6 @@ public static class ServiceCollectionExtensions
         .AddTransient<IDebugScene, DebugScene>()
         .AddTransient<IEncounterScene, EncounterScene>()
         .AddTransient<ITitleScene, TitleScene>()
-        .AddTransient<IDamageCalculator, DamageCalculator>();
+        .AddTransient<IDamageCalculator, DamageCalculator>()
+        .AddTransient<IRandomUtils, RandomUtils>();
 }

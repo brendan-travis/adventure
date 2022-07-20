@@ -1,4 +1,5 @@
-﻿using Adventure.Main.Utils.Interfaces;
+﻿using Adventure.Main.Entities;
+using Adventure.Main.Utils.Interfaces;
 
 namespace Adventure.Main.Utils;
 
@@ -8,17 +9,29 @@ public class DamageCalculator : IDamageCalculator
     private const int BaseDefence = 45;
     private const int DamageRandomRange = 1500;
 
-    private Random Random { get; } = new();
-
-    public int Calculate(int actorAttackSkill, int targetDefenceSkill)
+    public DamageCalculator(IRandomUtils randomUtils)
     {
-        if (targetDefenceSkill > actorAttackSkill) targetDefenceSkill = actorAttackSkill;
-        
-        var random = this.Random.Next(DamageRandomRange) / 100m;
-        var attackValue = actorAttackSkill * BaseDamage +
-                          (int)(actorAttackSkill * random);
-        var defenceValue = targetDefenceSkill * BaseDefence;
+        this.RandomUtils = randomUtils;
+    }
 
-        return attackValue - defenceValue;
+    private Random Random { get; } = new();
+    
+    private IRandomUtils RandomUtils { get; }
+
+    public int Calculate(int actorAttackStat, int targetDefenceStat, Skill skilLUsed)
+    {
+        if (targetDefenceStat > actorAttackStat) targetDefenceStat = actorAttackStat;
+        
+        var attackModifier = this.Random.Next(DamageRandomRange) / 100f;
+        var skillModifier = this.RandomUtils.NextFloat(skilLUsed.MinimumDamageModifier, skilLUsed.MaximumDamageModifier);
+        var attackValue = (actorAttackStat * BaseDamage +
+                          (actorAttackStat * attackModifier))
+                          * skillModifier;
+        var defenceValue = targetDefenceStat * BaseDefence;
+
+        var result = (int)attackValue - defenceValue;
+        if (result < 0) result = 0;
+
+        return result;
     }
 }

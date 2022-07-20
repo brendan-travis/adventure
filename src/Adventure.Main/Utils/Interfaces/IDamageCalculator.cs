@@ -1,6 +1,8 @@
-﻿namespace Adventure.Main.Utils.Interfaces;
+﻿using Adventure.Main.Entities;
+
+namespace Adventure.Main.Utils.Interfaces;
 
 public interface IDamageCalculator
 {
-    int Calculate(int actorAttackSkill, int targetDefenceSkill);
+    int Calculate(int actorAttackStat, int targetDefenceStat, Skill skillUsed);
 }
