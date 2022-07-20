@@ -45,7 +45,7 @@ internal class ConsoleMessageWriter : IMessageWriter
         if (currentCharacter != null)
         {
             this.WriteMessage($"[[{currentCharacter.Name},Blue]] " +
-                              $"Lv.[[{currentCharacter.SkillSet.TotalLevel},Yellow]] " +
+                              $"Lv.[[{currentCharacter.StatSet.TotalLevel},Yellow]] " +
                               $"HP.[[{currentCharacter.CurrentHealth},Red]]/" +
                               $"[[{currentCharacter.MaxHealth},Red]] ");
         }
@@ -57,7 +57,7 @@ internal class ConsoleMessageWriter : IMessageWriter
             foreach (var opponent in battleOpponents.Where(o => o.CurrentHealth > 0))
             {
                 this.WriteMessage($"* [[{opponent.Name},Red]] " +
-                                  $"Lv.[[{opponent.SkillSet.TotalLevel},Yellow]] " +
+                                  $"Lv.[[{opponent.StatSet.TotalLevel},Yellow]] " +
                                   $"HP.[[{opponent.CurrentHealth},Red]]/" +
                                   $"[[{opponent.MaxHealth},Red]] ");
             }

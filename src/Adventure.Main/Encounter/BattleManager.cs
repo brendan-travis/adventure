@@ -29,12 +29,13 @@ public class BattleManager : IBattleManager
         switch (choice.ToUpper())
         {
             case "ATTACK":
+                var skill = this.MessageReader.ShowChoices(player.Skills);
                 var opponent = this.MessageReader.ShowChoices(opponents.Where(o => o.CurrentHealth > 0).ToList());
 
-                this.MessageWriter.WriteMessage($"[[{player.Name},Blue]] swings at [[{opponent.Name},Green]].");
+                this.MessageWriter.WriteMessage($"[[{player.Name},Blue]] uses [[{skill.Name},Yellow]].");
                 this.MessageReader.WaitForInput();
 
-                var damage = this.DamageCalculator.Calculate(player.SkillSet.Attack, opponent.SkillSet.Defence);
+                var damage = this.DamageCalculator.Calculate(player.StatSet.Attack, opponent.StatSet.Defence);
 
                 this.MessageWriter.WriteMessage($"[[{opponent.Name},Green]] took {damage} damage.");
                 opponent.CurrentHealth -= damage;
@@ -69,10 +70,12 @@ public class BattleManager : IBattleManager
 
     public void ProcessOpponentTurn(Entity player, Entity opponent)
     {
-        this.MessageWriter.WriteMessage($"[[{opponent.Name},Green]] swings at [[{player.Name},Blue]].");
+        var skill = opponent.Skills[this.Random.Next(opponent.Skills.Count)];
+        
+        this.MessageWriter.WriteMessage($"[[{opponent.Name},Green]] uses [[{skill.Name},Yellow]].");
         this.MessageReader.WaitForInput();
 
-        var damage = this.DamageCalculator.Calculate(opponent.SkillSet.Attack, player.SkillSet.Defence);
+        var damage = this.DamageCalculator.Calculate(opponent.StatSet.Attack, player.StatSet.Defence);
 
         this.MessageWriter.WriteMessage($"[[{opponent.Name},Green]] attacks for {damage} damage.");
         player.CurrentHealth -= damage;

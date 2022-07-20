@@ -51,6 +51,15 @@ internal class ConsoleMessageReader : IMessageReader
                     }
 
                     break;
+                case IList<Skill> skillChoices:
+                    foreach (var choice in skillChoices)
+                    {
+                        this.MessageWriter.WriteMessage(choice == skillChoices[index]
+                            ? $"[[> {choice.Name}, Cyan]]"
+                            : $"  {choice.Name}");
+                    }
+                    
+                    break;
                 default:
                     throw new ArgumentException(
                         $"The type of the {nameof(choices)} parameter was invalid. {typeof(T)} is not valid.");

@@ -1,8 +1,8 @@
 ﻿namespace Adventure.Main.Entities;
 
-public class SkillSet
+public class StatSet
 {
-    public SkillSet(int attack, int defence)
+    public StatSet(int attack, int defence)
     {
         this.Attack = attack;
         this.Defence = defence;
