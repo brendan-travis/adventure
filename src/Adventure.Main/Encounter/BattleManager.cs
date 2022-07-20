@@ -90,6 +90,7 @@ public class BattleManager : IBattleManager
 
     public void ProcessVictory(Entity player, IList<Entity> opponent)
     {
+        player.CurrentHealth = player.MaxHealth;
         this.MessageWriter.WriteMessage("You win!");
     }
 

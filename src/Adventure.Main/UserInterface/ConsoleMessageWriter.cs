@@ -47,7 +47,10 @@ internal class ConsoleMessageWriter : IMessageWriter
             this.WriteMessage($"[[{currentCharacter.Name},Blue]] " +
                               $"Lv.[[{currentCharacter.StatSet.TotalLevel},Yellow]] " +
                               $"HP.[[{currentCharacter.CurrentHealth},Red]]/" +
-                              $"[[{currentCharacter.MaxHealth},Red]] ");
+                              $"[[{currentCharacter.MaxHealth},Red]] " +
+                              $"St.[[{currentCharacter.CurrentStamina},Green]]/" +
+                              $"[[{currentCharacter.MaxStamina},Green]] " +
+                              $"(+[[{currentCharacter.RestoredStamina}, Green]])");
         }
 
         // Battle data
