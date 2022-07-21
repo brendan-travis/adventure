@@ -21,7 +21,7 @@ public class EncounterScene : IEncounterScene
 
     private IMessageWriter MessageWriter { get; }
 
-    public void ProcessEncounter(Entity player, IList<Entity> opponents)
+    public void ProcessEncounter(PlayableEntity player, IList<NonPlayableEntity> opponents)
     {
         this.MessageWriter.RedrawUi(player, opponents);        
         
@@ -42,7 +42,7 @@ public class EncounterScene : IEncounterScene
                     break;
                 }
             }
-            else this.BattleManager.ProcessOpponentTurn(player, currentParticipant);
+            else this.BattleManager.ProcessOpponentTurn(player, (NonPlayableEntity)currentParticipant);
 
             participants.Enqueue(currentParticipant);
             participants = new Queue<Entity>(participants.Where(p => p.CurrentHealth > 0));

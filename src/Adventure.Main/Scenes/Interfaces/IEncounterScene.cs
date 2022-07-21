@@ -4,5 +4,5 @@ namespace Adventure.Main.Scenes.Interfaces;
 
 public interface IEncounterScene
 {
-    void ProcessEncounter(Entity player, IList<Entity> opponents);
+    void ProcessEncounter(PlayableEntity player, IList<NonPlayableEntity> opponents);
 }

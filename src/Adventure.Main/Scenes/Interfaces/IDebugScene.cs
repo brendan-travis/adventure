@@ -2,5 +2,5 @@
 
 public interface IDebugScene
 {
-    public void BeginTestBattle();
+    public void ShowMainDebugMenu();
 }

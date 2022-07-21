@@ -1,8 +1,8 @@
 ﻿namespace Adventure.Main.Entities;
 
-public class Entity
+public abstract class Entity
 {
-    public Entity(string name, int maxHealth, int maxStamina, int restoredStamina, int attack, int defence,
+    protected Entity(string name, int maxHealth, int maxStamina, int restoredStamina, int attack, int defence,
         List<Skill> skills)
     {
         this.Name = name;

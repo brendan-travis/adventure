@@ -37,7 +37,7 @@ internal class ConsoleMessageWriter : IMessageWriter
         this.ConsoleAdapter.WriteLine();
     }
 
-    public void RedrawUi(Entity? currentCharacter = null, IList<Entity>? battleOpponents = null)
+    public void RedrawUi(PlayableEntity? currentCharacter = null, IList<NonPlayableEntity>? battleOpponents = null)
     {
         this.ConsoleAdapter.Clear();
 
@@ -50,7 +50,8 @@ internal class ConsoleMessageWriter : IMessageWriter
                               $"[[{currentCharacter.MaxHealth},Red]] " +
                               $"St.[[{currentCharacter.CurrentStamina},Green]]/" +
                               $"[[{currentCharacter.MaxStamina},Green]] " +
-                              $"(+[[{currentCharacter.RestoredStamina}, Green]])");
+                              $"(+[[{currentCharacter.RestoredStamina}, Green]]) " +
+                              $"XP.[[{currentCharacter.CurrentXp}, Cyan]]");
         }
 
         // Battle data

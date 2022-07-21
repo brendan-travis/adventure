@@ -22,7 +22,7 @@ public class BattleManager : IBattleManager
 
     private Random Random { get; } = new();
 
-    public bool ProcessPlayerTurn(Entity player, IList<Entity> opponents)
+    public bool ProcessPlayerTurn(PlayableEntity player, IList<NonPlayableEntity> opponents)
     {
         player.CurrentStamina += player.RestoredStamina;
         if (player.CurrentStamina > player.MaxStamina)
@@ -86,7 +86,7 @@ public class BattleManager : IBattleManager
         return false;
     }
 
-    public void ProcessOpponentTurn(Entity player, Entity opponent)
+    public void ProcessOpponentTurn(PlayableEntity player, NonPlayableEntity opponent)
     {
         opponent.CurrentStamina += opponent.RestoredStamina;
         var availableSkills = opponent.Skills.Where(s => s.StaminaCost <= opponent.CurrentStamina).ToList();
@@ -109,14 +109,25 @@ public class BattleManager : IBattleManager
         }
     }
 
-    public void ProcessVictory(Entity player, IList<Entity> opponent)
+    public void ProcessVictory(PlayableEntity player, IList<NonPlayableEntity> opponents)
     {
+        var xpGranted = opponents.Sum(o => o.XpGranted);
+        
         player.CurrentHealth = player.MaxHealth;
+        player.CurrentXp += xpGranted; 
+        
         this.MessageWriter.WriteMessage("You win!");
+        this.MessageReader.WaitForInput();
+        this.MessageWriter.WriteMessage($"You earned {xpGranted} xp.");
     }
 
-    public void ProcessLoss(Entity player)
+    public void ProcessLoss(PlayableEntity player)
     {
+        var xpLost = player.CurrentXp / 2;
+        player.CurrentXp -= xpLost;
+        
         this.MessageWriter.WriteMessage("You lose!");
+        this.MessageReader.WaitForInput();
+        this.MessageWriter.WriteMessage($"You lose {xpLost} xp.");
     }
 }

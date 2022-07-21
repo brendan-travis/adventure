@@ -19,5 +19,5 @@ public interface IMessageWriter
     /// </summary>
     /// <param name="currentCharacter">The current player's character.</param>
     /// <param name="battleOpponents">The battle opponents. Can be omitted if not in a battle.</param>
-    public void RedrawUi(Entity? currentCharacter = null, IList<Entity>? battleOpponents = null);
+    public void RedrawUi(PlayableEntity? currentCharacter = null, IList<NonPlayableEntity>? battleOpponents = null);
 }

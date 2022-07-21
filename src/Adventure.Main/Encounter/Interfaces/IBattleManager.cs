@@ -10,11 +10,11 @@ public interface IBattleManager
     /// <param name="player"></param>
     /// <param name="opponents"></param>
     /// <returns>True if the player has run away from battle.</returns>
-    public bool ProcessPlayerTurn(Entity player, IList<Entity> opponents);
+    public bool ProcessPlayerTurn(PlayableEntity player, IList<NonPlayableEntity> opponents);
 
-    public void ProcessOpponentTurn(Entity player, Entity opponent);
+    public void ProcessOpponentTurn(PlayableEntity player, NonPlayableEntity opponent);
 
-    public void ProcessVictory(Entity player, IList<Entity> opponents);
+    public void ProcessVictory(PlayableEntity player, IList<NonPlayableEntity> opponents);
 
-    public void ProcessLoss(Entity player);
+    public void ProcessLoss(PlayableEntity player);
 }

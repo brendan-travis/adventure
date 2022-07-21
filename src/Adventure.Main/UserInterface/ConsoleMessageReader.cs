@@ -42,7 +42,7 @@ internal class ConsoleMessageReader : IMessageReader
                     }
 
                     break;
-                case IList<Entity> entityChoices:
+                case IList<NonPlayableEntity> entityChoices:
                     foreach (var choice in entityChoices)
                     {
                         this.MessageWriter.WriteMessage(choice == entityChoices[index]

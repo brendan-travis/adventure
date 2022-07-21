@@ -44,7 +44,7 @@ internal class TitleScene : ITitleScene
                     this.MessageWriter.WriteMessage("Not yet implemented.");
                     break;
                 case "Debug":
-                    this.DebugScene.BeginTestBattle();
+                    this.DebugScene.ShowMainDebugMenu();
                     break;
                 case "Quit":
                     return;
