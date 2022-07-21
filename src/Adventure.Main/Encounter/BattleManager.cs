@@ -24,12 +24,30 @@ public class BattleManager : IBattleManager
 
     public bool ProcessPlayerTurn(Entity player, IList<Entity> opponents)
     {
+        player.CurrentStamina += player.RestoredStamina;
+        if (player.CurrentStamina > player.MaxStamina)
+            player.CurrentStamina = player.MaxStamina;
+        this.MessageWriter.RedrawUi(player, opponents);
+        
         var choice = this.MessageReader.ShowChoices(new List<string> { "Attack", "Run away" });
 
         switch (choice.ToUpper())
         {
             case "ATTACK":
-                var skill = this.MessageReader.ShowChoices(player.Skills);
+                Skill skill;
+                do
+                {
+                    skill = this.MessageReader.ShowChoices(player.Skills);
+                    if (skill.StaminaCost > player.CurrentStamina)
+                    {
+                        this.MessageWriter.WriteMessage("You do not have enough stamina to do that.");
+                        this.MessageReader.WaitForInput();
+                        this.MessageWriter.RedrawUi(player, opponents);
+                    }
+                } while (skill.StaminaCost > player.CurrentStamina);
+
+                player.CurrentStamina -= skill.StaminaCost;
+                
                 var opponent = this.MessageReader.ShowChoices(opponents.Where(o => o.CurrentHealth > 0).ToList());
 
                 this.MessageWriter.WriteMessage($"[[{player.Name},Blue]] uses [[{skill.Name},Yellow]].");
@@ -70,7 +88,10 @@ public class BattleManager : IBattleManager
 
     public void ProcessOpponentTurn(Entity player, Entity opponent)
     {
-        var skill = opponent.Skills[this.Random.Next(opponent.Skills.Count)];
+        opponent.CurrentStamina += opponent.RestoredStamina;
+        var availableSkills = opponent.Skills.Where(s => s.StaminaCost <= opponent.CurrentStamina).ToList();
+        var skill = availableSkills[this.Random.Next(availableSkills.Count)];
+        opponent.CurrentStamina -= skill.StaminaCost;
         
         this.MessageWriter.WriteMessage($"[[{opponent.Name},Green]] uses [[{skill.Name},Yellow]].");
         this.MessageReader.WaitForInput();

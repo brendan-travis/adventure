@@ -55,8 +55,8 @@ internal class ConsoleMessageReader : IMessageReader
                     foreach (var choice in skillChoices)
                     {
                         this.MessageWriter.WriteMessage(choice == skillChoices[index]
-                            ? $"[[> {choice.Name}, Cyan]]"
-                            : $"  {choice.Name}");
+                            ? $"[[> {choice.Name} - {choice.StaminaCost}, Cyan]]"
+                            : $"  {choice.Name} - {choice.StaminaCost}");
                     }
                     
                     break;

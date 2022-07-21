@@ -45,7 +45,6 @@ public class EncounterScene : IEncounterScene
             else this.BattleManager.ProcessOpponentTurn(player, currentParticipant);
 
             participants.Enqueue(currentParticipant);
-
             participants = new Queue<Entity>(participants.Where(p => p.CurrentHealth > 0));
 
             this.MessageReader.WaitForInput();
